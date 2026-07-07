@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aman Sharma | Resume Builder & Recreator</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&family=Raleway:wght@400;500;600;700&family=Merriweather:wght@300;400;700&family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;600;700&family=Nunito:wght@400;500;600;700&family=Josefin+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Custom Styling -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Glows for Premium Aesthetics -->
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+
+  <div class="dashboard">
+    <!-- Left Panel: The Interactive Editor -->
+    <aside class="editor-panel">
+      <header class="editor-header">
+        <div class="logo">
+          <i class="fa-solid fa-file-invoice logo-icon"></i>
+          <h1>Resume.<span>Builder</span></h1>
+        </div>
+        <p class="subtitle">Customize your professional profile in real-time</p>
+      </header>
+
+      <div class="editor-content-scroll">
+
+      <!-- Preset Selector -->
+      <section class="preset-section">
+        <h3>Select Profile Preset:</h3>
+        <div class="preset-grid" id="preset-grid">
+          <!-- Dynamic preset buttons load here -->
+        </div>
+      </section>
+
+      <!-- Customizer Section -->
+      <section class="customizer-section">
+
+        <!-- Template Thumbnail Picker -->
+        <div class="customizer-block">
+          <h3><i class="fa-solid fa-table-cells-large"></i> Template Style</h3>
+          <div class="template-picker-grid" id="template-picker">
+            <div class="template-card active" data-template="modern" title="Modern (Default)">
+              <div class="template-thumb template-thumb-modern">
+                <div class="tt-header"></div>
+                <div class="tt-lines"><span></span><span></span><span class="short"></span></div>
+                <div class="tt-lines"><span></span><span></span><span class="short"></span></div>
+              </div>
+              <span>Modern</span>
+            </div>
+            <div class="template-card" data-template="classic" title="Classic Serif">
+              <div class="template-thumb template-thumb-classic">
+                <div class="tt-header classic"></div>
+                <div class="tt-lines"><span></span><span class="short"></span></div>
+                <div class="tt-lines"><span></span><span class="short"></span></div>
+                <div class="tt-lines"><span></span><span class="short"></span></div>
+              </div>
+              <span>Classic</span>
+            </div>
+            <div class="template-card" data-template="minimal" title="Minimalist Clean">
+              <div class="template-thumb template-thumb-minimal">
+                <div class="tt-sidebar"></div>
+                <div class="tt-main">
+                  <div class="tt-lines"><span></span></div>
+                  <div class="tt-lines"><span></span><span class="short"></span></div>
+                </div>
+              </div>
+              <span>Minimal</span>
+            </div>
+            <div class="template-card" data-template="executive" title="Executive Bold">
+              <div class="template-thumb template-thumb-executive">
+                <div class="tt-exec-bar"></div>
+                <div class="tt-lines"><span></span><span class="short"></span></div>
+                <div class="tt-lines"><span></span><span></span></div>
+              </div>
+              <span>Executive</span>
+            </div>
+            <div class="template-card" data-template="creative" title="Creative">
+              <div class="template-thumb template-thumb-creative">
+                <div class="tt-diagonal"></div>
+                <div class="tt-lines creative"><span></span></div>
+                <div class="tt-lines"><span></span><span class="short"></span></div>
+              </div>
+              <span>Creative</span>
+            </div>
+            <div class="template-card" data-template="ats" title="ATS Clean">
+              <div class="template-thumb template-thumb-ats">
+                <div class="tt-ats-name"></div>
+                <div class="tt-lines plain"><span></span><span></span></div>
+                <div class="tt-lines plain"><span></span><span class="short"></span></div>
+                <div class="tt-lines plain"><span></span><span class="short"></span></div>
+              </div>
+              <span>ATS Clean</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row: Accent Color + ATS Mode Toggle -->
+        <div class="customizer-row">
+          <div class="customizer-col">
+            <h3><i class="fa-solid fa-palette"></i> Accent Color</h3>
+            <div class="color-picker-container">
+              <input type="color" id="resume-accent-color" value="#4f46e5">
+              <span class="color-hex-val">#4F46E5</span>
+            </div>
+          </div>
+          <div class="customizer-col">
+            <h3><i class="fa-solid fa-robot"></i> ATS Mode</h3>
+            <div class="ats-toggle-row">
+              <label class="toggle-switch">
+                <input type="checkbox" id="ats-mode-toggle">
+                <span class="toggle-slider"></span>
+              </label>
+              <span class="ats-toggle-hint">Clean for bots</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row: Font + Line Spacing -->
+        <div class="customizer-row">
+          <div class="customizer-col">
+            <h3><i class="fa-solid fa-font"></i> Font Style</h3>
+            <select id="select-font" class="customizer-select">
+              <option value="inter" selected>Inter / Outfit</option>
+              <option value="roboto">Roboto / Raleway</option>
+              <option value="merriweather">Merriweather / Lato</option>
+              <option value="playfair">Playfair / Source Sans</option>
+              <option value="ibmplex">IBM Plex Mono</option>
+              <option value="nunito">Nunito / Josefin</option>
+            </select>
+          </div>
+          <div class="customizer-col">
+            <h3><i class="fa-solid fa-text-height"></i> Line Spacing <span id="spacing-val-label">1.4</span></h3>
+            <input type="range" id="select-spacing" class="spacing-slider" min="1.1" max="2.0" step="0.1" value="1.4">
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Editor Forms (Accordion Style) -->
+      <div class="editor-accordion">
+        
+        <!-- Contact Information -->
+        <details open class="accordion-item" name="editor-accordion">
+          <summary class="accordion-header">
+            <span><i class="fa-solid fa-address-card icon-prefix"></i>Contact Details</span>
+            <i class="fa-solid fa-chevron-down chevron"></i>
+          </summary>
+          <div class="accordion-content">
+            <div class="grid-2">
+              <div class="form-group">
+                <label for="input-name">Full Name</label>
+                <input type="text" id="input-name" placeholder="Aman Sharma">
+              </div>
+              <div class="form-group">
+                <label for="input-title">Professional Title</label>
+                <input type="text" id="input-title" placeholder="Full Stack Developer">
+              </div>
+            </div>
+            <div class="grid-2 mt-2">
+              <div class="form-group">
+                <label for="input-phone">Phone Number</label>
+                <input type="text" id="input-phone" placeholder="8962603584">
+              </div>
+              <div class="form-group">
+                <label for="input-email">Email Address</label>
+                <input type="email" id="input-email" placeholder="amannsharma08@gmail.com">
+              </div>
+            </div>
+            <div class="form-group mt-2">
+              <label for="input-location">Location / Address</label>
+              <input type="text" id="input-location" placeholder="Gwalior, Madhya Pradesh">
+            </div>
+            <div class="grid-3 mt-2">
+              <div class="form-group">
+                <label for="input-linkedin">LinkedIn (Username or URL)</label>
+                <input type="text" id="input-linkedin" placeholder="linkedin.com/in/username">
+              </div>
+              <div class="form-group">
+                <label for="input-github">GitHub / Behance</label>
+                <input type="text" id="input-github" placeholder="github.com/username">
+              </div>
+              <div class="form-group">
+                <label for="input-portfolio">Portfolio Site</label>
+                <input type="text" id="input-portfolio" placeholder="yourportfolio.com">
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <!-- Work Experience -->
+        <details class="accordion-item" name="editor-accordion">
+          <summary class="accordion-header">
+            <span><i class="fa-solid fa-briefcase icon-prefix"></i>Work Experience</span>
+            <i class="fa-solid fa-chevron-down chevron"></i>
+          </summary>
+          <div class="accordion-content">
+            <div class="section-actions">
+              <button class="btn-secondary" id="btn-add-job-root">+ Add New Job</button>
+            </div>
+            <div id="experience-list-container"></div>
+          </div>
+        </details>
+
+        <!-- Projects -->
+        <details class="accordion-item" name="editor-accordion">
+          <summary class="accordion-header">
+            <span><i class="fa-solid fa-code-fork icon-prefix"></i>Projects</span>
+            <i class="fa-solid fa-chevron-down chevron"></i>
+          </summary>
+          <div class="accordion-content">
+            <div class="section-actions">
+              <button class="btn-secondary" id="btn-add-project-root">+ Add New Project</button>
+            </div>
+            <div id="projects-list-container"></div>
+          </div>
+        </details>
+
+        <!-- Education -->
+        <details class="accordion-item" name="editor-accordion">
+          <summary class="accordion-header">
+            <span><i class="fa-solid fa-graduation-cap icon-prefix"></i>Education</span>
+            <i class="fa-solid fa-chevron-down chevron"></i>
+          </summary>
+          <div class="accordion-content">
+            <div class="section-actions">
+              <button class="btn-secondary" id="btn-add-edu-root">+ Add New Education</button>
+            </div>
+            <div id="education-list-container"></div>
+          </div>
+        </details>
+
+        <!-- Skills -->
+        <details class="accordion-item" name="editor-accordion">
+          <summary class="accordion-header">
+            <span><i class="fa-solid fa-award icon-prefix"></i>Skills</span>
+            <i class="fa-solid fa-chevron-down chevron"></i>
+          </summary>
+          <div class="accordion-content">
+            <div class="form-group">
+              <label for="input-languages">Languages</label>
+              <input type="text" id="input-languages" placeholder="Python, JavaScript, SQL...">
+            </div>
+            <div class="form-group mt-2">
+              <label for="input-tools">Tools &amp; Tech</label>
+              <input type="text" id="input-tools" placeholder="Figma, Git, React, VS Code...">
+            </div>
+          </div>
+        </details>
+
+        <!-- Custom Sections -->
+        <div class="custom-sections-wrapper">
+          <div id="custom-sections-accordion-list">
+            <!-- Custom sections rendered dynamically here -->
+          </div>
+          <button class="btn-add-custom-section" id="btn-add-custom-section">
+            <i class="fa-solid fa-plus"></i> Add Custom Section
+          </button>
+        </div>
+
+      </div>
+
+      </div>
+
+      <!-- Action Panel -->
+      <footer class="editor-actions">
+        <button class="btn-primary" id="btn-print" style="margin-bottom: 12px;">
+          <i class="fa-solid fa-print"></i> Print / Save PDF
+        </button>
+        <div class="grid-2">
+          <button class="btn-secondary" id="btn-export" title="Export backup to JSON">
+            <i class="fa-solid fa-download"></i> Export Data
+          </button>
+          <button class="btn-secondary" id="btn-import" title="Import backup from JSON">
+            <i class="fa-solid fa-upload"></i> Import Data
+          </button>
+        </div>
+        <input type="file" id="import-file-input" style="display: none;" accept=".json">
+      </footer>
+    </aside>
+
+    <!-- Right Panel: Live Resume Preview -->
+    <main class="preview-panel">
+      <div class="preview-header-bar">
+        <div class="preview-badge"><i class="fa-solid fa-eye"></i> Live A4 Print Preview</div>
+        <div class="preview-header-actions">
+          <div class="ats-safe-badge" id="ats-safe-badge">
+            <i class="fa-solid fa-shield-halved"></i> ATS Safe
+          </div>
+          <button class="btn-ats-score" id="btn-ats-score" title="Analyze ATS keyword match">
+            <i class="fa-solid fa-chart-pie"></i> ATS Score
+          </button>
+          <button class="btn-print-icon" id="btn-print-preview" title="Print / Save PDF">
+            <i class="fa-solid fa-print"></i> Print
+          </button>
+        </div>
+        <p class="preview-instructions">Use <strong>**text**</strong> for bold styling in fields.</p>
+      </div>
+
+      <!-- ATS Score Panel (slide-down overlay) -->
+      <div class="ats-panel" id="ats-panel">
+        <div class="ats-panel-inner">
+          <div class="ats-panel-header">
+            <h3><i class="fa-solid fa-crosshairs"></i> ATS Keyword Analyzer</h3>
+            <button class="btn-close-ats" id="btn-close-ats">&times;</button>
+          </div>
+          <p class="ats-panel-sub">Paste the job description below to see how well your resume matches.</p>
+          <textarea id="ats-jd-input" placeholder="Paste the full job description here (requirements, responsibilities, skills)..." rows="5"></textarea>
+          <button class="btn-primary btn-run-ats" id="btn-run-ats">
+            <i class="fa-solid fa-magnifying-glass-chart"></i> Analyze Match
+          </button>
+          <div class="ats-results" id="ats-results" style="display:none;">
+            <div class="ats-score-row">
+              <div class="ats-gauge-wrap">
+                <svg class="ats-gauge" viewBox="0 0 100 100">
+                  <circle class="ats-gauge-bg" cx="50" cy="50" r="40"/>
+                  <circle class="ats-gauge-fill" id="ats-gauge-fill" cx="50" cy="50" r="40"/>
+                </svg>
+                <div class="ats-gauge-text">
+                  <span id="ats-score-pct">0%</span>
+                  <small>Match</small>
+                </div>
+              </div>
+              <div class="ats-score-meta">
+                <div class="ats-stat"><span id="ats-matched-count">0</span><small>Matched</small></div>
+                <div class="ats-stat"><span id="ats-missing-count">0</span><small>Missing</small></div>
+                <div class="ats-stat"><span id="ats-total-count">0</span><small>JD Keywords</small></div>
+              </div>
+            </div>
+            <div class="ats-keywords-section">
+              <div class="ats-kw-group">
+                <h4><i class="fa-solid fa-circle-check"></i> Matched Keywords</h4>
+                <div class="ats-chips" id="ats-matched-chips"></div>
+              </div>
+              <div class="ats-kw-group">
+                <h4><i class="fa-solid fa-circle-xmark"></i> Missing Keywords</h4>
+                <div class="ats-chips" id="ats-missing-chips"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- The A4 Sheet container -->
+      <div class="resume-wrapper">
+        <div class="resume-container">
+          <div class="resume-sheet" id="resume-sheet">
+          
+          <!-- Name &amp; Header Section -->
+          <header class="resume-header">
+            <h1 id="res-name">Aman Sharma</h1>
+            <div class="contact-bar" id="res-contact-bar">
+              <!-- Contact details loaded dynamically -->
+            </div>
+          </header>
+
+          <!-- Dynamic Sections -->
+          <section class="resume-section" id="res-section-experience">
+            <!-- Experience list loaded dynamically -->
+          </section>
+
+          <section class="resume-section" id="res-section-projects">
+            <!-- Projects list loaded dynamically -->
+          </section>
+
+          <section class="resume-section" id="res-section-education">
+            <!-- Education list loaded dynamically -->
+          </section>
+
+          <section class="resume-section" id="res-section-skills">
+            <!-- Skills listed dynamically -->
+          </section>
+
+          <!-- Custom Sections rendered here dynamically -->
+          <div id="res-custom-sections"></div>
+
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- AI Chatbot Assistant Widget -->
+  <div class="chatbot-container" id="chatbot-container">
+    <div class="chatbot-header">
+      <div class="chatbot-title">
+        <i class="fa-solid fa-robot chatbot-icon"></i>
+        <div>
+          <h4>AI Resume Assistant</h4>
+          <span class="chatbot-status"><span class="status-dot"></span>Online</span>
+        </div>
+      </div>
+      <button class="btn-close-chat" id="btn-close-chat" title="Close Chat">&times;</button>
+    </div>
+    <div class="chatbot-messages" id="chatbot-messages">
+      <!-- Messages will load dynamically -->
+    </div>
+    <div class="chatbot-input-area">
+      <input type="text" id="chatbot-input" placeholder="Ask AI to update your resume..." autocomplete="off">
+      <button id="btn-send-chat" class="btn-send-chat" title="Send message">
+        <i class="fa-solid fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Floating Chatbot Toggle Button -->
+  <button class="chatbot-toggle-btn" id="chatbot-toggle-btn" title="Open AI Assistant">
+    <i class="fa-solid fa-comment-dots"></i>
+    <span class="pulse-indicator"></span>
+  </button>
+
+  <!-- Toast Notification System -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Custom Modal for adding preset -->
+  <div id="preset-modal" class="modal">
+    <div class="modal-content">
+      <h3>Save Custom Profile</h3>
+      <p>Save your current resume details as a new preset profile.</p>
+      <input type="text" id="custom-preset-name" placeholder="e.g. Full Stack Dev" maxlength="20">
+      <div class="modal-actions">
+        <button class="btn-secondary" id="btn-cancel-preset">Cancel</button>
+        <button class="btn-primary" id="btn-save-preset" style="width: auto; padding: 8px 16px;">Save Preset</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Section Type Picker Modal -->
+  <div id="custom-section-modal" class="modal">
+    <div class="modal-content">
+      <h3><i class="fa-solid fa-plus" style="color:var(--accent-light);margin-right:8px;"></i>Add Custom Section</h3>
+      <p>Choose a section type to add to your resume.</p>
+      <div class="custom-section-type-grid">
+        <button class="custom-section-type-btn" data-type="certifications"><i class="fa-solid fa-certificate"></i> Certifications</button>
+        <button class="custom-section-type-btn" data-type="awards"><i class="fa-solid fa-trophy"></i> Awards</button>
+        <button class="custom-section-type-btn" data-type="volunteer"><i class="fa-solid fa-hand-holding-heart"></i> Volunteer</button>
+        <button class="custom-section-type-btn" data-type="publications"><i class="fa-solid fa-book-open"></i> Publications</button>
+        <button class="custom-section-type-btn" data-type="languages"><i class="fa-solid fa-language"></i> Languages</button>
+        <button class="custom-section-type-btn" data-type="interests"><i class="fa-solid fa-star"></i> Interests</button>
+        <button class="custom-section-type-btn" data-type="custom"><i class="fa-solid fa-pen"></i> Custom Title</button>
+      </div>
+      <div class="form-group mt-2" id="custom-section-title-wrap" style="display:none;">
+        <label>Custom Section Title</label>
+        <input type="text" id="custom-section-title-input" placeholder="e.g. Achievements, References...">
+      </div>
+      <div class="modal-actions">
+        <button class="btn-secondary" id="btn-cancel-custom-section">Cancel</button>
+        <button class="btn-primary" id="btn-confirm-custom-section" style="width:auto;padding:8px 16px;">Add Section</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation Bar -->
+  <div class="mobile-nav-bar">
+    <button class="mobile-nav-btn active" id="btn-nav-editor">
+      <i class="fa-solid fa-pen-to-square"></i>
+      <span>Edit Details</span>
+    </button>
+    <button class="mobile-nav-btn" id="btn-nav-preview">
+      <i class="fa-solid fa-eye"></i>
+      <span>View Resume</span>
+    </button>
+  </div>
+
+  <!-- Application logic -->
+  <script src="app.js"></script>
+</body>
+</html>
