@@ -1508,7 +1508,6 @@ body {
     border: none !important;
     transform: none !important;
     margin: 0 !important;
-    padding: 0 !important; /* Set to 0 because @page handles margins */
     width: 100% !important;
     height: auto !important;
     position: relative !important;
@@ -1519,7 +1518,7 @@ body {
 
   @page {
     size: A4 portrait;
-    margin: 15mm 20mm; /* Replaces padding on sheet to handle printer offsets */
+    margin: 0; /* Hides default browser header (date, title) and footer (URL, page numbers) */
   }
   .resume-sheet::after {
     display: none !important;
