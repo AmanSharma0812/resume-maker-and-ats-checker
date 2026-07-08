@@ -975,31 +975,42 @@ body {
   margin-left: 6px;
 }
 
-.res-project-link {
-  color: var(--res-accent, #111111);
-  text-decoration: none;
-  font-size: 8.5pt;
-  margin-left: 4px;
-  font-weight: 500;
+.project-link-container {
+  display: inline-flex;
+  align-items: center;
 }
 
-.res-project-link:hover {
-  text-decoration: underline;
+.res-project-link-icon {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
 }
 
 .project-link-icon {
   font-size: 8pt;
   color: #666;
-  margin-left: 8px;
+  margin-left: 6px;
+  transition: color 0.2s ease;
 }
 
-.resume-sheet.ats-mode .project-link-icon {
+.res-project-link-icon:hover .project-link-icon {
+  color: var(--res-accent, #4f46e5);
+}
+
+.res-project-link-text {
+  display: none;
+}
+
+.resume-sheet.ats-mode .res-project-link-icon {
   display: none !important;
 }
 
-.resume-sheet.ats-mode .res-project-link {
+.resume-sheet.ats-mode .res-project-link-text {
+  display: inline !important;
   color: #000 !important;
   text-decoration: underline;
+  font-size: 9.5pt;
+  margin-left: 6px;
 }
 
 /* Skills section styling */

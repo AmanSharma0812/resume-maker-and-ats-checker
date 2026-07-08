@@ -1144,7 +1144,12 @@ function updatePreview() {
       let linkHtml = "";
       if (proj.link) {
         const cleanUrl = proj.link.replace(/^(https?:\/\/)?(www\.)?/, "");
-        linkHtml = ` <span class="project-link-bar"><i class="fa-solid fa-link project-link-icon"></i> <a href="https://${cleanUrl}" target="_blank" class="res-project-link">${cleanUrl}</a></span>`;
+        linkHtml = `
+          <span class="project-link-container">
+            <a href="https://${cleanUrl}" target="_blank" class="res-project-link-icon" title="View Project"><i class="fa-solid fa-link project-link-icon"></i></a>
+            <a href="https://${cleanUrl}" target="_blank" class="res-project-link-text">${cleanUrl}</a>
+          </span>
+        `;
       }
       html += `
         <div class="resume-entry project-entry">
