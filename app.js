@@ -44,14 +44,17 @@ const PRESETS = {
     projects: [
       {
         name: "Spotify Clone",
+        link: "github.com/AmanSharma/spotify-clone",
         description: "Built a fully functional Spotify interface clone using **React.js, Tailwind CSS**, and the Spotify API. Integrates play, pause, search, and playlist viewing features."
       },
       {
         name: "Face Recognition System",
+        link: "github.com/AmanSharma/face-recognition",
         description: "Developed a computer vision application utilizing **Python, OpenCV, and TensorFlow** to detect and recognize faces from a live webcam feed in real-time."
       },
       {
         name: "Weather Dashboard",
+        link: "github.com/AmanSharma/weather-dashboard",
         description: "Created an interactive weather application that integrates open-source APIs to fetch real-time weather details and present them with beautiful dynamic backgrounds based on the current weather condition."
       }
     ],
@@ -115,10 +118,12 @@ const PRESETS = {
     projects: [
       {
         name: "Minimalist Icon Pack",
+        link: "gumroad.com/l/icon-pack",
         description: "Designed and released 100+ minimalist iOS and Android icons from scratch using Procreate and Figma; marketed on YouTube and generated organic sales on Gumroad."
       },
       {
         name: "Real Estate Identity Design",
+        link: "behance.net/AmanSharma/realestate",
         description: "Created the complete branding package, logos, hoardings, and social media templates for high-profile regional housing societies, boosting their local visual presence."
       }
     ],
@@ -201,14 +206,17 @@ const PRESETS = {
     projects: [
       {
         name: "Spotify Clone",
+        link: "github.com/AmanSharma/spotify-clone",
         description: "Built a fully functional Spotify UI clone with **React.js and Tailwind CSS**, integrating real-time audio controls and playlist data."
       },
       {
         name: "Minimalist Icon Pack",
+        link: "gumroad.com/l/icon-pack",
         description: "Created and launched a bundle of 100+ vector-drawn mobile icons, marketing them via social media channels and distributing via Gumroad."
       },
       {
         name: "Face Recognition App",
+        link: "github.com/AmanSharma/face-recognition",
         description: "Programmed a python application using **OpenCV** to track and recognize faces with low-latency frames."
       }
     ],
@@ -827,6 +835,10 @@ function renderProjectsList() {
         <input type="text" class="proj-name" data-index="${index}" data-field="name" value="${proj.name}">
       </div>
       <div class="form-group mt-2">
+        <label>Project Link (URL, optional)</label>
+        <input type="text" class="proj-link" data-index="${index}" data-field="link" value="${proj.link || ""}" placeholder="e.g. github.com/username/project">
+      </div>
+      <div class="form-group mt-2">
         <label>Description</label>
         <textarea class="proj-description" data-index="${index}" data-field="description">${proj.description}</textarea>
       </div>
@@ -1129,9 +1141,14 @@ function updatePreview() {
     projSection.style.display = "block";
     let html = `<h3>PROJECTS</h3><div class="section-divider"></div><div class="section-content">`;
     currentData.projects.forEach(proj => {
+      let linkHtml = "";
+      if (proj.link) {
+        const cleanUrl = proj.link.replace(/^(https?:\/\/)?(www\.)?/, "");
+        linkHtml = ` <span class="project-link-bar"><i class="fa-solid fa-link project-link-icon"></i> <a href="https://${cleanUrl}" target="_blank" class="res-project-link">${cleanUrl}</a></span>`;
+      }
       html += `
         <div class="resume-entry project-entry">
-          <span class="entry-org">${proj.name}</span>
+          <span class="entry-org">${proj.name}</span>${linkHtml}
           <span class="project-desc">${formatMarkdown(proj.description)}</span>
         </div>
       `;
