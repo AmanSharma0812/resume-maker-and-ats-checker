@@ -2425,3 +2425,8 @@ body {
 .resume-sheet.font-playfair { font-family: 'Playfair Display', serif !important; }
 .resume-sheet.font-ibmplex { font-family: 'IBM Plex Sans', sans-serif !important; }
 .resume-sheet.font-nunito { font-family: 'Nunito', sans-serif !important; }
+
+/* Helper to disable all transitions instantly */
+.no-transition, .no-transition * {
+  transition: none !important;
+}

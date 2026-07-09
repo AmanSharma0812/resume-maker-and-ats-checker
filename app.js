@@ -2452,15 +2452,25 @@ function renderCustomSectionsList() {
 // Generate and Download PDF using html2pdf.js
 function downloadPDF() {
   const sheet = document.getElementById("resume-sheet");
-  if (!sheet) return;
+  const wrapper = document.querySelector(".resume-wrapper");
+  const container = document.querySelector(".resume-container");
+  if (!sheet || !wrapper || !container) return;
 
   showToast("Generating PDF, please wait...");
 
-  // Temporarily disable scaling transform for high-quality export
-  const originalTransform = sheet.style.transform;
-  const originalTransformOrigin = sheet.style.transformOrigin;
-  sheet.style.transform = "none";
-  sheet.style.transformOrigin = "top left";
+  // 1. Add no-transition class to avoid transition delays
+  sheet.classList.add("no-transition");
+  container.classList.add("no-transition");
+
+  // 2. Save original style values
+  const originalScale = wrapper.style.getPropertyValue("--scale") || "1";
+  const originalWidth = container.style.width;
+  const originalHeight = container.style.height;
+
+  // 3. Set scale to 1 for rendering
+  wrapper.style.setProperty("--scale", "1");
+  container.style.width = "794px"; // A4 Width in pixels
+  container.style.height = `${sheet.offsetHeight}px`;
 
   // Clean filename based on candidate name
   const candidateName = document.getElementById("res-name")?.innerText || "Resume";
@@ -2474,21 +2484,35 @@ function downloadPDF() {
       scale: 2, 
       useCORS: true, 
       logging: false,
-      letterRendering: true
+      letterRendering: true,
+      scrollX: 0,
+      scrollY: 0
     },
     jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
   };
 
-  html2pdf().set(opt).from(sheet).save().then(() => {
-    sheet.style.transform = originalTransform;
-    sheet.style.transformOrigin = originalTransformOrigin;
-    showToast("PDF downloaded successfully!");
-  }).catch(err => {
-    console.error("PDF generation failed:", err);
-    sheet.style.transform = originalTransform;
-    sheet.style.transformOrigin = originalTransformOrigin;
-    showToast("Failed to download PDF. Try printing instead.", "error");
-  });
+  // Wait for the browser layout to stabilize without transitions
+  setTimeout(() => {
+    html2pdf().set(opt).from(sheet).save().then(() => {
+      // Restore scales and transitions
+      wrapper.style.setProperty("--scale", originalScale);
+      container.style.width = originalWidth;
+      container.style.height = originalHeight;
+      sheet.classList.remove("no-transition");
+      container.classList.remove("no-transition");
+      scaleResume();
+      showToast("PDF downloaded successfully!");
+    }).catch(err => {
+      console.error("PDF generation failed:", err);
+      wrapper.style.setProperty("--scale", originalScale);
+      container.style.width = originalWidth;
+      container.style.height = originalHeight;
+      sheet.classList.remove("no-transition");
+      container.classList.remove("no-transition");
+      scaleResume();
+      showToast("Failed to download PDF. Try printing instead.", "error");
+    });
+  }, 150);
 }
 
 // Client-Side Google Gemini API Chatbot
