@@ -896,8 +896,8 @@ body {
 }
 
 .section-divider {
-  height: 1px;
-  background-color: var(--res-accent, #333333);
+  height: 0;
+  border-top: 1px solid var(--res-accent, #333333);
   margin-top: 2px;
   margin-bottom: 10px;
 }
@@ -1506,7 +1506,9 @@ body {
   .editor-panel,
   .preview-header-bar,
   .toast-container,
-  .mobile-nav-bar {
+  .mobile-nav-bar,
+  .chatbot-toggle-btn,
+  .chatbot-container {
     display: none !important;
   }
 
@@ -1718,12 +1720,29 @@ body {
 
 /* --- TEMPLATE THUMBNAIL PICKER --- */
 .template-picker-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
+  display: flex;
+  overflow-x: auto;
+  gap: 12px;
+  padding-bottom: 8px;
+  scrollbar-width: thin;
+}
+
+.template-picker-grid::-webkit-scrollbar {
+  height: 4px;
+}
+.template-picker-grid::-webkit-scrollbar-track {
+  background: transparent;
+}
+.template-picker-grid::-webkit-scrollbar-thumb {
+  background: var(--panel-border);
+  border-radius: 2px;
+}
+.template-picker-grid::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
 }
 
 .template-card {
+  flex: 0 0 110px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2260,8 +2279,9 @@ body {
 .resume-sheet.template-executive .section-divider {
   margin-top: 4px;
   margin-bottom: 10px;
-  background: rgba(0,0,0,0.1);
-  height: 1px;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  height: 0;
+  background: transparent;
 }
 
 /* CREATIVE */
@@ -2305,8 +2325,9 @@ body {
 }
 
 .resume-sheet.template-creative .section-divider {
-  background: linear-gradient(90deg, var(--res-accent, #4f46e5), transparent);
-  height: 1.5px;
+  border-top: 1.5px solid var(--res-accent, #4f46e5);
+  height: 0;
+  background: transparent;
   margin-bottom: 10px;
 }
 
@@ -2340,7 +2361,7 @@ body {
   font-family: Arial, sans-serif;
 }
 
-.resume-sheet.template-ats .section-divider { background: #000; height: 1px; }
+.resume-sheet.template-ats .section-divider { border-top: 1px solid #000; height: 0; background: transparent; }
 
 /* Font families for resume sheet */
 .resume-sheet.font-roboto { font-family: 'Roboto', sans-serif !important; }
