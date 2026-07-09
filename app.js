@@ -319,6 +319,13 @@ function setupPresetListeners() {
     window.print();
   });
 
+  const btnDownloadPdf = document.getElementById("btn-download-pdf");
+  if (btnDownloadPdf) {
+    btnDownloadPdf.addEventListener("click", () => {
+      downloadPDF();
+    });
+  }
+
   const btnPrintPreview = document.getElementById("btn-print-preview");
   if (btnPrintPreview) {
     btnPrintPreview.addEventListener("click", () => {
@@ -373,6 +380,36 @@ function setupPresetListeners() {
       saveCurrentProgress();
     });
   }
+
+  // Curated color palettes listener
+  const swatches = document.querySelectorAll(".palette-swatch-btn");
+  swatches.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const palette = btn.dataset.palette;
+      let hex = "#4f46e5";
+      if (palette === "slate") hex = "#1e3a8a";
+      else if (palette === "emerald") hex = "#065f46";
+      else if (palette === "royal") hex = "#4f46e5";
+      else if (palette === "amber") hex = "#c2410c";
+      else if (palette === "onyx") hex = "#111827";
+
+      currentData.accentColor = hex;
+
+      if (colorPicker) colorPicker.value = hex;
+      if (colorValSpan) colorValSpan.textContent = hex.toUpperCase();
+
+      const sheet = document.getElementById("resume-sheet");
+      if (sheet) {
+        sheet.style.setProperty("--res-accent", hex);
+      }
+
+      swatches.forEach(s => s.classList.remove("active"));
+      btn.classList.add("active");
+
+      saveCurrentProgress();
+      updatePreview();
+    });
+  });
 
   // Export / Import backups
   const btnExport = document.getElementById("btn-export");
@@ -597,6 +634,18 @@ function loadDataIntoEditor(data) {
   if (colorValSpan) colorValSpan.textContent = accentColor.toUpperCase();
   if (sheet) sheet.style.setProperty("--res-accent", accentColor);
 
+  // Set active class on color palette swatch
+  document.querySelectorAll(".palette-swatch-btn").forEach(btn => {
+    const palette = btn.dataset.palette;
+    let hex = "#4f46e5";
+    if (palette === "slate") hex = "#1e3a8a";
+    else if (palette === "emerald") hex = "#065f46";
+    else if (palette === "royal") hex = "#4f46e5";
+    else if (palette === "amber") hex = "#c2410c";
+    else if (palette === "onyx") hex = "#111827";
+    btn.classList.toggle("active", hex.toLowerCase() === accentColor.toLowerCase());
+  });
+
   // Load Font Style
   const fontStyle = data.fontStyle || "inter";
   const fontSelect = document.getElementById("select-font");
@@ -671,8 +720,8 @@ function renderExperienceList() {
     const isFirst = index === 0;
     const isLast = index === currentData.experience.length - 1;
     card.innerHTML = `
-      <div class="item-card-header">
-        <h4>Job #${index + 1}</h4>
+      <div class="item-card-header" style="cursor: move;">
+        <h4><i class="fa-solid fa-grip-vertical" style="color: var(--text-muted); margin-right: 8px; font-size: 11px;"></i> Job #${index + 1}</h4>
         <div class="item-card-actions">
           <button class="btn-icon btn-move-up-job" data-index="${index}" ${isFirst ? 'disabled' : ''} title="Move Up"><i class="fa-solid fa-chevron-up"></i></button>
           <button class="btn-icon btn-move-down-job" data-index="${index}" ${isLast ? 'disabled' : ''} title="Move Down"><i class="fa-solid fa-chevron-down"></i></button>
@@ -809,6 +858,25 @@ function renderExperienceList() {
       showToast(`AI generated bullets for ${job.company || "Job"}!`);
     });
   });
+
+  // Sortable JS drag and drop reordering
+  if (window.Sortable) {
+    Sortable.create(container, {
+      animation: 150,
+      handle: ".item-card-header",
+      onEnd: (evt) => {
+        const oldIndex = evt.oldIndex;
+        const newIndex = evt.newIndex;
+        if (oldIndex !== newIndex) {
+          const item = currentData.experience.splice(oldIndex, 1)[0];
+          currentData.experience.splice(newIndex, 0, item);
+          saveCurrentProgress();
+          renderExperienceList();
+          updatePreview();
+        }
+      }
+    });
+  }
 }
 
 // Render projects list
@@ -822,8 +890,8 @@ function renderProjectsList() {
     const isFirst = index === 0;
     const isLast = index === currentData.projects.length - 1;
     card.innerHTML = `
-      <div class="item-card-header">
-        <h4>Project #${index + 1}</h4>
+      <div class="item-card-header" style="cursor: move;">
+        <h4><i class="fa-solid fa-grip-vertical" style="color: var(--text-muted); margin-right: 8px; font-size: 11px;"></i> Project #${index + 1}</h4>
         <div class="item-card-actions">
           <button class="btn-icon btn-move-up-project" data-index="${index}" ${isFirst ? 'disabled' : ''} title="Move Up"><i class="fa-solid fa-chevron-up"></i></button>
           <button class="btn-icon btn-move-down-project" data-index="${index}" ${isLast ? 'disabled' : ''} title="Move Down"><i class="fa-solid fa-chevron-down"></i></button>
@@ -891,6 +959,25 @@ function renderProjectsList() {
       updatePreview();
     });
   });
+
+  // Sortable JS drag and drop reordering
+  if (window.Sortable) {
+    Sortable.create(container, {
+      animation: 150,
+      handle: ".item-card-header",
+      onEnd: (evt) => {
+        const oldIndex = evt.oldIndex;
+        const newIndex = evt.newIndex;
+        if (oldIndex !== newIndex) {
+          const item = currentData.projects.splice(oldIndex, 1)[0];
+          currentData.projects.splice(newIndex, 0, item);
+          saveCurrentProgress();
+          renderProjectsList();
+          updatePreview();
+        }
+      }
+    });
+  }
 }
 
 // Render education list
@@ -904,8 +991,8 @@ function renderEducationList() {
     const isFirst = index === 0;
     const isLast = index === currentData.education.length - 1;
     card.innerHTML = `
-      <div class="item-card-header">
-        <h4>Education #${index + 1}</h4>
+      <div class="item-card-header" style="cursor: move;">
+        <h4><i class="fa-solid fa-grip-vertical" style="color: var(--text-muted); margin-right: 8px; font-size: 11px;"></i> Education #${index + 1}</h4>
         <div class="item-card-actions">
           <button class="btn-icon btn-move-up-edu" data-index="${index}" ${isFirst ? 'disabled' : ''} title="Move Up"><i class="fa-solid fa-chevron-up"></i></button>
           <button class="btn-icon btn-move-down-edu" data-index="${index}" ${isLast ? 'disabled' : ''} title="Move Down"><i class="fa-solid fa-chevron-down"></i></button>
@@ -1030,6 +1117,25 @@ function renderEducationList() {
       updatePreview();
     });
   });
+
+  // Sortable JS drag and drop reordering
+  if (window.Sortable) {
+    Sortable.create(container, {
+      animation: 150,
+      handle: ".item-card-header",
+      onEnd: (evt) => {
+        const oldIndex = evt.oldIndex;
+        const newIndex = evt.newIndex;
+        if (oldIndex !== newIndex) {
+          const item = currentData.education.splice(oldIndex, 1)[0];
+          currentData.education.splice(newIndex, 0, item);
+          saveCurrentProgress();
+          renderEducationList();
+          updatePreview();
+        }
+      }
+    });
+  }
 }
 
 // Add top-level add buttons
@@ -1395,6 +1501,47 @@ function setupChatbot() {
     });
   }
 
+  // API settings modal
+  const btnSettings = document.getElementById("btn-chatbot-settings");
+  const apiModal = document.getElementById("api-modal");
+  const keyInput = document.getElementById("gemini-api-key-input");
+  const btnSaveApi = document.getElementById("btn-save-api");
+  const btnClearApi = document.getElementById("btn-clear-api");
+
+  if (btnSettings && apiModal && keyInput && btnSaveApi && btnClearApi) {
+    btnSettings.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const savedKey = localStorage.getItem("gemini_api_key") || "";
+      keyInput.value = savedKey;
+      apiModal.classList.add("show");
+    });
+
+    btnSaveApi.addEventListener("click", () => {
+      const val = keyInput.value.trim();
+      if (val) {
+        localStorage.setItem("gemini_api_key", val);
+        showToast("Gemini API key saved successfully!");
+      } else {
+        localStorage.removeItem("gemini_api_key");
+        showToast("Please enter a valid key.");
+      }
+      apiModal.classList.remove("show");
+    });
+
+    btnClearApi.addEventListener("click", () => {
+      localStorage.removeItem("gemini_api_key");
+      keyInput.value = "";
+      showToast("Gemini API key cleared.");
+      apiModal.classList.remove("show");
+    });
+
+    apiModal.addEventListener("click", (e) => {
+      if (e.target === apiModal) {
+        apiModal.classList.remove("show");
+      }
+    });
+  }
+
   // Handle Send message
   function handleSendMessage() {
     const text = chatInput.value.trim();
@@ -1407,12 +1554,17 @@ function setupChatbot() {
     // 2. Add typing indicator
     const typingElement = showTypingIndicator();
 
-    // 3. Process with NLP Parser after a brief simulated thinking delay
-    setTimeout(() => {
-      typingElement.remove();
-      const botResponse = parseResumeUpdate(text);
-      addChatMessage(botResponse, "bot");
-    }, 1000);
+    // 3. Process response
+    const apiKey = localStorage.getItem("gemini_api_key");
+    if (apiKey) {
+      generateGeminiResponse(text, typingElement);
+    } else {
+      setTimeout(() => {
+        typingElement.remove();
+        const botResponse = parseResumeUpdate(text);
+        addChatMessage(botResponse, "bot");
+      }, 1000);
+    }
   }
 
   // Bind event listeners for input submission
@@ -2037,6 +2189,81 @@ function runATSAnalysis() {
     missingEl.innerHTML = missing.slice(0, 20).map(k => `<span class="ats-chip missing">${k}</span>`).join("") || "<span style='color:var(--text-muted);font-size:11px;'>Great — all matched!</span>";
   }
 
+  // Run Structural Audit
+  const auditListEl = document.getElementById("ats-audit-list");
+  if (auditListEl) {
+    const audits = [];
+
+    // Check contact details
+    const hasPhone = !!currentData.phone?.trim();
+    const hasEmail = !!currentData.email?.trim();
+    const hasLocation = !!currentData.location?.trim();
+    const hasLinkedIn = !!currentData.linkedin?.trim();
+
+    if (hasPhone && hasEmail && hasLocation) {
+      audits.push({ class: "pass", icon: "fa-circle-check", text: "Basic contact details (Email, Phone, Location) are complete." });
+    } else {
+      const missingFields = [];
+      if (!hasPhone) missingFields.push("Phone");
+      if (!hasEmail) missingFields.push("Email");
+      if (!hasLocation) missingFields.push("Location");
+      audits.push({ class: "error", icon: "fa-circle-exclamation", text: `Missing critical contact fields: ${missingFields.join(", ")}.` });
+    }
+
+    if (hasLinkedIn) {
+      audits.push({ class: "pass", icon: "fa-circle-check", text: "Professional profile link (LinkedIn) is linked." });
+    } else {
+      audits.push({ class: "warning", icon: "fa-triangle-exclamation", text: "LinkedIn profile is missing. Many ATS bots prioritize candidates with links." });
+    }
+
+    // Check resume word count
+    const wordCount = resumeText.split(/\s+/).filter(Boolean).length;
+    if (wordCount >= 250 && wordCount <= 750) {
+      audits.push({ class: "pass", icon: "fa-circle-check", text: `Optimal word count: ${wordCount} words (ideal is 300 - 700).` });
+    } else if (wordCount < 250) {
+      audits.push({ class: "error", icon: "fa-circle-exclamation", text: `Your resume is too brief (${wordCount} words). Add details to your work experience.` });
+    } else {
+      audits.push({ class: "warning", icon: "fa-triangle-exclamation", text: `Your resume is long (${wordCount} words). Try to keep it concise and under 750 words.` });
+    }
+
+    // Check work experience bullets
+    let bulletIssues = 0;
+    let jobCount = currentData.experience?.length || 0;
+    if (jobCount > 0) {
+      currentData.experience.forEach((job, i) => {
+        const bullets = job.bullets?.length || 0;
+        if (bullets < 2 || bullets > 6) {
+          bulletIssues++;
+        }
+      });
+      if (bulletIssues === 0) {
+        audits.push({ class: "pass", icon: "fa-circle-check", text: "All job positions have a balanced number of bullet points (2 to 6)." });
+      } else {
+        audits.push({ class: "warning", icon: "fa-triangle-exclamation", text: `${bulletIssues} position(s) have too few (< 2) or too many (> 6) bullet points.` });
+      }
+    } else {
+      audits.push({ class: "error", icon: "fa-circle-exclamation", text: "No work experience found. An ATS-compliant resume requires at least one work entry." });
+    }
+
+    // Check page limits
+    const sheetElement = document.getElementById("resume-sheet");
+    const currentHeight = sheetElement ? sheetElement.offsetHeight : 0;
+    const a4HeightLimit = 1122;
+    if (currentHeight <= a4HeightLimit + 5) {
+      audits.push({ class: "pass", icon: "fa-circle-check", text: "Perfect length! Resume content fits nicely on a single A4 page." });
+    } else {
+      audits.push({ class: "error", icon: "fa-circle-exclamation", text: "Content overflow! Resume exceeds one A4 page. Shorten lines or decrease line spacing to fit." });
+    }
+
+    // Render audits
+    auditListEl.innerHTML = audits.map(a => `
+      <div class="ats-audit-item ${a.class}">
+        <i class="fa-solid ${a.icon}"></i>
+        <span>${a.text}</span>
+      </div>
+    `).join("");
+  }
+
   if (resultsEl) resultsEl.style.display = "flex";
   showToast(`ATS Score: ${score}% — ${matched.length} of ${total} keywords matched`);
 }
@@ -2220,4 +2447,115 @@ function renderCustomSectionsList() {
       updatePreview();
     });
   });
+}
+
+// Generate and Download PDF using html2pdf.js
+function downloadPDF() {
+  const sheet = document.getElementById("resume-sheet");
+  if (!sheet) return;
+
+  showToast("Generating PDF, please wait...");
+
+  // Temporarily disable scaling transform for high-quality export
+  const originalTransform = sheet.style.transform;
+  const originalTransformOrigin = sheet.style.transformOrigin;
+  sheet.style.transform = "none";
+  sheet.style.transformOrigin = "top left";
+
+  // Clean filename based on candidate name
+  const candidateName = document.getElementById("res-name")?.innerText || "Resume";
+  const filename = `${candidateName.trim().replace(/\s+/g, "_")}_Resume.pdf`;
+
+  const opt = {
+    margin:       0,
+    filename:     filename,
+    image:        { type: 'jpeg', quality: 0.98 },
+    html2canvas:  { 
+      scale: 2, 
+      useCORS: true, 
+      logging: false,
+      letterRendering: true
+    },
+    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
+
+  html2pdf().set(opt).from(sheet).save().then(() => {
+    sheet.style.transform = originalTransform;
+    sheet.style.transformOrigin = originalTransformOrigin;
+    showToast("PDF downloaded successfully!");
+  }).catch(err => {
+    console.error("PDF generation failed:", err);
+    sheet.style.transform = originalTransform;
+    sheet.style.transformOrigin = originalTransformOrigin;
+    showToast("Failed to download PDF. Try printing instead.", "error");
+  });
+}
+
+// Client-Side Google Gemini API Chatbot
+async function generateGeminiResponse(userPrompt, typingIndicator) {
+  const apiKey = localStorage.getItem("gemini_api_key");
+  if (!apiKey) return;
+
+  try {
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    const systemPrompt = `You are an AI Resume Assistant. Your job is to help candidates edit, structure, and improve their resume.
+Here is the current state of their resume in JSON format:
+${JSON.stringify(currentData)}
+
+User's instruction: "${userPrompt}"
+
+Please perform the changes requested. Make edits, rewrite bullets, or add sections as instructed.
+Format your response as follows:
+1. First, write a brief, friendly summary of what you changed (in markdown).
+2. Then, output the full updated resume JSON enclosed inside <resume_json> and </resume_json> tags.
+
+Important rules:
+- Keep the exact same keys as the provided JSON format.
+- Ensure the updated resume data is correct, clean JSON.
+- Never output raw code fences outside the <resume_json> tag.
+`;
+
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: systemPrompt }] }]
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`API returned status ${response.status}`);
+    }
+
+    const resJson = await response.json();
+    const botText = resJson.candidates?.[0]?.content?.parts?.[0]?.text || "";
+
+    typingIndicator.remove();
+
+    // Parse the updated JSON
+    const jsonMatch = botText.match(/<resume_json>([\s\S]*?)<\/resume_json>/);
+    if (jsonMatch) {
+      try {
+        const cleanedJsonText = jsonMatch[1].trim();
+        const updatedData = JSON.parse(cleanedJsonText);
+        
+        currentData = updatedData;
+        saveCurrentProgress();
+        loadDataIntoEditor(currentData);
+        updatePreview();
+
+        const displayMsg = botText.replace(/<resume_json>[\s\S]*?<\/resume_json>/g, "").trim();
+        addChatMessage(displayMsg || "I have successfully updated your resume!", "bot");
+      } catch (parseErr) {
+        console.error("JSON parsing failed:", parseErr, jsonMatch[1]);
+        addChatMessage("I updated the resume but outputted an invalid format. Please try again with a more specific instruction.", "bot");
+      }
+    } else {
+      addChatMessage(botText, "bot");
+    }
+  } catch (err) {
+    console.error("Gemini API error:", err);
+    typingIndicator.remove();
+    addChatMessage(`Failed to communicate with Gemini API. Error: ${err.message}. Please check your API key settings.`, "bot");
+  }
 }

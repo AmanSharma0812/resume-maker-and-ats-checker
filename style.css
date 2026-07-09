@@ -1773,6 +1773,62 @@ body {
   color: var(--text-secondary);
 }
 
+/* Color Palettes Swatches */
+.palette-swatch-list {
+  display: flex;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.palette-swatch-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid var(--panel-border);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.palette-swatch-btn:hover {
+  transform: scale(1.15);
+  border-color: #ffffff;
+}
+
+.palette-swatch-btn.active {
+  transform: scale(1.15);
+  border-color: var(--accent-light, #818cf8);
+  box-shadow: 0 0 10px rgba(129, 140, 248, 0.5);
+}
+
+/* ATS Audit List */
+.ats-audit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--text-secondary);
+}
+
+.ats-audit-item i {
+  margin-top: 2px;
+  font-size: 11px;
+}
+
+.ats-audit-item.pass i {
+  color: #10b981;
+}
+
+.ats-audit-item.warning i {
+  color: #f59e0b;
+}
+
+.ats-audit-item.error i {
+  color: #ef4444;
+}
+
 .template-card.active > span { color: var(--accent-light); }
 
 .template-thumb {

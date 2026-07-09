@@ -10,6 +10,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Roboto:wght@300;400;500;700&family=Raleway:wght@400;500;600;700&family=Merriweather:wght@300;400;700&family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;600;700&family=Nunito:wght@400;500;600;700&family=Josefin+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- html2pdf.js for Direct PDF Export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <!-- SortableJS for Drag & Drop Reordering -->
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
   <!-- Custom Styling -->
   <link rel="stylesheet" href="style.css">
 </head>
@@ -120,6 +124,18 @@
               </label>
               <span class="ats-toggle-hint">Clean for bots</span>
             </div>
+          </div>
+        </div>
+
+        <!-- Curated Color Palettes -->
+        <div class="customizer-block" style="margin-top: 12px; margin-bottom: 14px;">
+          <h3><i class="fa-solid fa-swatchbook"></i> Professional Color Palettes</h3>
+          <div class="palette-swatch-list" id="palette-swatch-list">
+            <button class="palette-swatch-btn" data-palette="slate" title="Slate Tech" style="background: linear-gradient(135deg, #1e3a8a 0%, #475569 100%);"></button>
+            <button class="palette-swatch-btn" data-palette="emerald" title="Emerald Leader" style="background: linear-gradient(135deg, #065f46 0%, #1e293b 100%);"></button>
+            <button class="palette-swatch-btn" data-palette="royal" title="Royal Indigo" style="background: linear-gradient(135deg, #4f46e5 0%, #5b21b6 100%);"></button>
+            <button class="palette-swatch-btn" data-palette="amber" title="Warm Amber" style="background: linear-gradient(135deg, #c2410c 0%, #7c2d12 100%);"></button>
+            <button class="palette-swatch-btn" data-palette="onyx" title="Clean Onyx" style="background: linear-gradient(135deg, #111827 0%, #6b7280 100%);"></button>
           </div>
         </div>
 
@@ -271,9 +287,14 @@
 
       <!-- Action Panel -->
       <footer class="editor-actions">
-        <button class="btn-primary" id="btn-print" style="margin-bottom: 12px;">
-          <i class="fa-solid fa-print"></i> Print / Save PDF
-        </button>
+        <div class="grid-2" style="margin-bottom: 12px; gap: 10px;">
+          <button class="btn-primary" id="btn-print" style="margin-bottom: 0;">
+            <i class="fa-solid fa-print"></i> Print Menu
+          </button>
+          <button class="btn-primary" id="btn-download-pdf" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3); margin-bottom: 0;">
+            <i class="fa-solid fa-file-pdf"></i> Download PDF
+          </button>
+        </div>
         <div class="grid-2">
           <button class="btn-secondary" id="btn-export" title="Export backup to JSON">
             <i class="fa-solid fa-download"></i> Export Data
@@ -344,6 +365,15 @@
                 <div class="ats-chips" id="ats-missing-chips"></div>
               </div>
             </div>
+            
+            <div class="ats-audit-section" style="margin-top: 14px; border-top: 1px solid var(--panel-border); padding-top: 12px;">
+              <h4 style="font-size: 11px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px;">
+                <i class="fa-solid fa-clipboard-check"></i> Resume Checklist & Audit
+              </h4>
+              <div id="ats-audit-list" class="ats-audit-list" style="display: flex; flex-direction: column; gap: 6px;">
+                <!-- Dynamically populated checklist items -->
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -397,7 +427,10 @@
           <span class="chatbot-status"><span class="status-dot"></span>Online</span>
         </div>
       </div>
-      <button class="btn-close-chat" id="btn-close-chat" title="Close Chat">&times;</button>
+      <div class="chatbot-header-actions" style="display: flex; gap: 8px; align-items: center;">
+        <button class="btn-icon" id="btn-chatbot-settings" title="Gemini API Key" style="color: rgba(255,255,255,0.7); font-size: 14px; background: transparent; border: none; padding: 4px; cursor: pointer; transition: color 0.2s;"><i class="fa-solid fa-key"></i></button>
+        <button class="btn-close-chat" id="btn-close-chat" title="Close Chat" style="font-size: 20px; line-height: 1; padding: 4px; background: transparent; border: none; color: #fff; cursor: pointer;">&times;</button>
+      </div>
     </div>
     <div class="chatbot-messages" id="chatbot-messages">
       <!-- Messages will load dynamically -->
@@ -453,6 +486,27 @@
       <div class="modal-actions">
         <button class="btn-secondary" id="btn-cancel-custom-section">Cancel</button>
         <button class="btn-primary" id="btn-confirm-custom-section" style="width:auto;padding:8px 16px;">Add Section</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Modal for Gemini API Settings -->
+  <div id="api-modal" class="modal">
+    <div class="modal-content" style="max-width: 420px;">
+      <h3><i class="fa-solid fa-key" style="color: var(--accent-light); margin-right: 8px;"></i> Gemini API Configuration</h3>
+      <p style="font-size: 12px; color: var(--text-secondary); margin-top: 8px; line-height: 1.5;">
+        Enter your Google Gemini API Key below. This key is used directly from your browser to communicate with Google Gemini AI. Your key is stored securely in your browser's local storage and is never sent to any third-party server.
+      </p>
+      <p style="font-size: 11px; color: var(--text-muted); margin-top: 6px;">
+        Don't have an API key? You can get a free key from the <a href="https://aistudio.google.com/" target="_blank" style="color: var(--accent-light); text-decoration: underline;">Google AI Studio</a>.
+      </p>
+      <div class="form-group" style="margin-top: 14px;">
+        <label style="font-size: 11px;">Gemini API Key</label>
+        <input type="password" id="gemini-api-key-input" class="custom-section-entry-input" placeholder="AIzaSy..." style="margin-top: 4px;">
+      </div>
+      <div class="modal-actions" style="margin-top: 18px; display: flex; justify-content: flex-end; gap: 10px;">
+        <button class="btn-secondary" id="btn-clear-api" style="padding: 8px 14px; margin-bottom: 0;">Clear Key</button>
+        <button class="btn-primary" id="btn-save-api" style="padding: 8px 16px; margin-bottom: 0; width: auto;">Save Key</button>
       </div>
     </div>
   </div>
