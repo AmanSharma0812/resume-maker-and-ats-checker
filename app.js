@@ -235,6 +235,201 @@ const PRESETS = {
       languages: "JavaScript (ES6+), Python, HTML5, CSS3, SQL (PostgreSQL, MySQL)",
       tools: "React.js, Figma, Adobe Photoshop, Premiere Pro, DaVinci Resolve, Git, GitHub, VS Code, Canva, OBS"
     }
+  },
+  salesMarketing: {
+    templateStyle: "executive",
+    accentColor: "#f97316",
+    fontStyle: "inter",
+    lineSpacing: 1.3,
+    atsMode: false,
+    name: "Aman Sharma",
+    title: "Sales & Marketing Specialist",
+    phone: "8962603584",
+    email: "amannsharma08@gmail.com",
+    location: "Gwalior, Madhya Pradesh",
+    linkedin: "linkedin.com/in/AmanSharma",
+    github: "",
+    portfolio: "amansharma.market",
+    experience: [
+      {
+        company: "Alpha Growth Media",
+        role: "Digital Marketing Coordinator",
+        dates: "2024 – Present",
+        location: "Gwalior, MP",
+        bullets: [
+          "Developed and executed multi-channel digital campaigns across Google Ads, Meta, and LinkedIn, boosting qualified sales lead acquisitions by 35% year-over-year.",
+          "Analyzed Google Analytics and CRM telemetry to optimize advertising spend, lowering customer acquisition cost (CAC) by 18%.",
+          "Authored high-converting SEO copy and blog content, driving organic web search traffic growth of 50%."
+        ]
+      },
+      {
+        company: "NextGen SaaS Solutions",
+        role: "Sales Development Representative",
+        dates: "2023 – 2024",
+        location: "Remote",
+        bullets: [
+          "Exceeded monthly sales prospecting quotas by an average of 120%, generating over $150K in verified sales pipeline.",
+          "Conducted product discovery calls and tailored software demonstrations for enterprise B2B prospects."
+        ]
+      }
+    ],
+    projects: [
+      {
+        name: "E-Commerce Launch Campaign",
+        link: "case-studies/ecomm-launch",
+        description: "Planned and executed the go-to-market branding strategy for a national health-food e-store, generating $50K in sales within 90 days."
+      },
+      {
+        name: "Local Business SEO Overhaul",
+        link: "case-studies/local-seo",
+        description: "Optimized local search visibility and map pack rankings for a hospitality chain, increasing phone inquiries by 80%."
+      }
+    ],
+    education: [
+      {
+        institution: "State University of Business",
+        degree: "B.S. in Business Administration (Major in Marketing)",
+        dates: "2019 – 2023",
+        location: "Gwalior, MP",
+        bullets: [
+          "Graduated with honors, focusing on Consumer Behavior, Market Research, and Brand Strategy."
+        ]
+      }
+    ],
+    skills: {
+      languages: "Social Media Strategy, SEO Writing, B2B Sales Prospecting, Email Campaigns, Copywriting",
+      tools: "Google Analytics, HubSpot CRM, Salesforce, Mailchimp, Meta Ads Manager, Google Ads"
+    }
+  },
+  financeAccounting: {
+    templateStyle: "classic",
+    accentColor: "#1e3a8a",
+    fontStyle: "merriweather",
+    lineSpacing: 1.3,
+    atsMode: false,
+    name: "Aman Sharma",
+    title: "Financial Analyst & Accountant",
+    phone: "8962603584",
+    email: "amannsharma08@gmail.com",
+    location: "Gwalior, Madhya Pradesh",
+    linkedin: "linkedin.com/in/AmanSharma",
+    github: "",
+    portfolio: "amansharma.finance",
+    experience: [
+      {
+        company: "Vanguard Capital Partners",
+        role: "Senior Financial Analyst",
+        dates: "2024 – Present",
+        location: "Gwalior, MP",
+        bullets: [
+          "Conducted comprehensive variance analysis and budget forecasting, presenting quarterly financial reviews to executive leadership.",
+          "Built complex discounted cash flow (DCF) models and valuation reports for potential middle-market acquisition deals.",
+          "Streamlined monthly financial close procedures, reducing report preparation time by 3 business days."
+        ]
+      },
+      {
+        company: "Apex Business Solutions",
+        role: "Staff Accountant",
+        dates: "2022 – 2024",
+        location: "Gwalior, MP",
+        bullets: [
+          "Managed general ledger entries, account reconciliations, and tax compliance audits for 25+ corporate clients.",
+          "Reviewed corporate expense accounts and processed payroll ledgers in compliance with local regulations."
+        ]
+      }
+    ],
+    projects: [
+      {
+        name: "Enterprise ERP Implementation",
+        link: "projects/erp-migration",
+        description: "Led the accounting migration of ledger histories into SAP S/4HANA, coordinating with IT to ensure complete audit compliance."
+      },
+      {
+        name: "Cost Optimization Audit",
+        link: "projects/cost-audit",
+        description: "Conducted a thorough audit of operations expenses, identifying $45K in recurring software license redundancies."
+      }
+    ],
+    education: [
+      {
+        institution: "City College of Commerce",
+        degree: "M.S. in Accounting & Financial Management",
+        dates: "2020 – 2022",
+        location: "Gwalior, MP",
+        bullets: [
+          "Focus on Corporate Finance, GAAP Standards, Tax Regulations, and Advanced Auditing."
+        ]
+      }
+    ],
+    skills: {
+      languages: "Corporate Finance, GAAP Standards, Tax Filing, Financial Modeling, Auditing",
+      tools: "Excel (VBA, Pivot Tables), QuickBooks, SAP S/4HANA, Xero, Tableau, Salesforce"
+    }
+  },
+  healthcareNurse: {
+    templateStyle: "minimal",
+    accentColor: "#059669",
+    fontStyle: "inter",
+    lineSpacing: 1.3,
+    atsMode: false,
+    name: "Aman Sharma",
+    title: "Registered Nurse (RN)",
+    phone: "8962603584",
+    email: "amannsharma08@gmail.com",
+    location: "Gwalior, Madhya Pradesh",
+    linkedin: "linkedin.com/in/AmanSharma",
+    github: "",
+    portfolio: "",
+    experience: [
+      {
+        company: "St. Jude Memorial Hospital",
+        role: "Staff Nurse - Intensive Care Unit (ICU)",
+        dates: "2023 – Present",
+        location: "Gwalior, MP",
+        bullets: [
+          "Provided high-acuity nursing care to critically ill patients, coordinating patient care plans with physicians and specialists.",
+          "Administered complex medication regimens, intravenous therapies, and monitored patient telemetry and ventilator metrics.",
+          "Educated patient families on post-discharge care protocols and health management strategies."
+        ]
+      },
+      {
+        company: "Gwalior Medical Center",
+        role: "Clinical Nurse - Emergency Department",
+        dates: "2021 – 2023",
+        location: "Gwalior, MP",
+        bullets: [
+          "Triaged arriving emergency patients, executing rapid assessments and initiating emergency life support procedures.",
+          "Maintained flawless electronic health record (EHR) entries and care logs, adhering to clinical HIPAA standards."
+        ]
+      }
+    ],
+    projects: [
+      {
+        name: "ICU Discharge Optimization Project",
+        link: "",
+        description: "Co-led a hospital taskforce to streamline patient transition protocols, reducing average discharge times by 20%."
+      },
+      {
+        name: "Community Wellness Campaign",
+        link: "",
+        description: "Organized a regional public health outreach clinic, providing free blood pressure and glucose screenings to 300+ residents."
+      }
+    ],
+    education: [
+      {
+        institution: "College of Nursing & Allied Health",
+        degree: "Bachelor of Science in Nursing (BSN)",
+        dates: "2017 – 2021",
+        location: "Gwalior, MP",
+        bullets: [
+          "Licensed Registered Nurse (RN) with clinical rotations in Intensive Care, Emergency Medicine, and Pediatrics."
+        ]
+      }
+    ],
+    skills: {
+      languages: "Critical Care Nursing, Patient Triage, IV Therapy, EHR Documentation, Patient Advocacy",
+      tools: "Epic Systems EHR, Patient Telemetry, Ventilator Systems, ACLS/BLS Certification"
+    }
   }
 };
 
@@ -437,7 +632,10 @@ function renderPresetButtons() {
   const defaults = [
     { id: "reactDev", name: "React Dev" },
     { id: "graphicDesigner", name: "Designer" },
-    { id: "combined", name: "Combined" }
+    { id: "combined", name: "Combined" },
+    { id: "salesMarketing", name: "Sales & Marketing" },
+    { id: "financeAccounting", name: "Finance & Accounts" },
+    { id: "healthcareNurse", name: "Healthcare (Nurse)" }
   ];
 
   defaults.forEach(preset => {
@@ -508,8 +706,15 @@ function selectPreset(id) {
     showToast(`Loaded "${customPresets[id].profileName || id}" preset!`);
   } else if (PRESETS[id]) {
     currentData = JSON.parse(JSON.stringify(PRESETS[id]));
-    const names = { reactDev: "React Dev", graphicDesigner: "Designer", combined: "Combined" };
-    showToast(`Loaded ${names[id]} preset!`);
+    const names = { 
+      reactDev: "React Dev", 
+      graphicDesigner: "Designer", 
+      combined: "Combined",
+      salesMarketing: "Sales/Marketing",
+      financeAccounting: "Finance/Accountant",
+      healthcareNurse: "Healthcare RN"
+    };
+    showToast(`Loaded ${names[id] || id} preset!`);
   }
 
   loadDataIntoEditor(currentData);
@@ -1884,6 +2089,42 @@ function generateAIBullets(role, company) {
       `Supervised development sprints and release milestones at **${comp}**, coordinating engineers and designers to launch projects.`,
       `Analyzed client telemetry trends and business workflow indicators to identify feature enhancements, improving user acquisition by 12%.`,
       `Drafted clear functional specifications, layout mockups, and product workflows to align development focus with customer requirements.`
+    ];
+  }
+
+  // Sales & Marketing template
+  if (rLower.includes("sales") || rLower.includes("market") || rLower.includes("growth") || rLower.includes("seo") || rLower.includes("campaign") || rLower.includes("leads") || rLower.includes("account")) {
+    return [
+      `Developed and executed multi-channel digital campaigns at **${comp}**, driving qualified sales lead acquisitions by 25% year-over-year.`,
+      `Managed and nurtured high-value B2B client relationships, securing renewals and exceeding quarterly target revenue goals.`,
+      `Leveraged CRM platforms and data tracking systems to optimize campaign metrics and minimize customer acquisition cost (CAC) by 15%.`
+    ];
+  }
+
+  // Finance & Accounting template
+  if (rLower.includes("finance") || rLower.includes("accountant") || rLower.includes("accounting") || rLower.includes("tax") || rLower.includes("audit") || rLower.includes("ledger") || rLower.includes("budget")) {
+    return [
+      `Conducted detailed financial audit evaluations, ledger accounts reconciliations, and expense calculations at **${comp}** in compliance with GAAP rules.`,
+      `Built advanced budgeting worksheets, forecasts, and cost-benefit reports, providing key insights to leadership to cut wastes by 10%.`,
+      `Managed general books closures, statements filing, and balance sheets audits, ensuring complete accuracy across all statements.`
+    ];
+  }
+
+  // Healthcare & Medicine template
+  if (rLower.includes("nurse") || rLower.includes("medic") || rLower.includes("clinic") || rLower.includes("patient") || rLower.includes("health") || rLower.includes("care") || rLower.includes("hospital")) {
+    return [
+      `Delivered high-quality clinical care and patient triage services at **${comp}**, managing diagnostics and medication distribution protocols safely.`,
+      `Collaborated with physicians and multidisciplinary healthcare teams to draft and execute personalized patient recovery strategies.`,
+      `Maintained precise, HIPAA-compliant electronic health records (EHR) logs, ensuring top-tier safety indicators and data compliance.`
+    ];
+  }
+
+  // Customer Service & Support template
+  if (rLower.includes("support") || rLower.includes("customer") || rLower.includes("service") || rLower.includes("help") || rLower.includes("success") || rLower.includes("agent")) {
+    return [
+      `Resolved user inquiries and troubleshooting cases at **${comp}** via phone, email, and live messaging channels, maintaining a 95% CSAT score.`,
+      `Created comprehensive help center documents, support templates, and FAQs to decrease average resolution times by 20%.`,
+      `Liaised with engineering and sales departments to convey client feedback, supporting continuous feature updates.`
     ];
   }
 
