@@ -1070,12 +1070,12 @@ body {
 @media (max-width: 768px) {
   body {
     overflow: hidden;
-    height: 100vh;
+    height: 100dvh;
   }
 
   .dashboard {
     flex-direction: column;
-    height: calc(100vh - 60px);
+    height: calc(100dvh - 60px);
   }
 
   .mobile-nav-bar {
@@ -1485,7 +1485,7 @@ body {
     bottom: 0;
     right: 0;
     width: 100%;
-    height: calc(100vh - 60px); /* Fill screen above mobile navigation bar */
+    height: calc(100dvh - 60px); /* Fill screen above mobile navigation bar */
     border-radius: 16px 16px 0 0;
     border-bottom: none;
   }

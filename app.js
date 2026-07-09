@@ -2452,25 +2452,39 @@ function renderCustomSectionsList() {
 // Generate and Download PDF using html2pdf.js
 function downloadPDF() {
   const sheet = document.getElementById("resume-sheet");
-  const wrapper = document.querySelector(".resume-wrapper");
-  const container = document.querySelector(".resume-container");
-  if (!sheet || !wrapper || !container) return;
+  if (!sheet) return;
 
   showToast("Generating PDF, please wait...");
 
-  // 1. Add no-transition class to avoid transition delays
-  sheet.classList.add("no-transition");
-  container.classList.add("no-transition");
+  // Create a temporary container for rendering the cloned sheet off-screen
+  const tempWrapper = document.createElement("div");
+  tempWrapper.style.position = "fixed";
+  tempWrapper.style.left = "0";
+  tempWrapper.style.top = "0";
+  tempWrapper.style.zIndex = "-9999";
+  tempWrapper.style.width = "794px"; // A4 Width in pixels
+  tempWrapper.style.height = "auto";
+  tempWrapper.style.overflow = "hidden";
+  tempWrapper.style.background = "#ffffff";
 
-  // 2. Save original style values
-  const originalScale = wrapper.style.getPropertyValue("--scale") || "1";
-  const originalWidth = container.style.width;
-  const originalHeight = container.style.height;
+  // Clone the sheet
+  const clone = sheet.cloneNode(true);
+  clone.classList.add("no-transition");
+  
+  // Set explicit clean styles on the clone to guarantee correct sizing and visibility
+  clone.style.transform = "none";
+  clone.style.position = "relative";
+  clone.style.left = "0";
+  clone.style.top = "0";
+  clone.style.width = "210mm";
+  clone.style.minHeight = "297mm";
+  clone.style.boxShadow = "none";
+  clone.style.margin = "0";
+  clone.style.opacity = "1";
+  clone.style.display = "block";
 
-  // 3. Set scale to 1 for rendering
-  wrapper.style.setProperty("--scale", "1");
-  container.style.width = "794px"; // A4 Width in pixels
-  container.style.height = `${sheet.offsetHeight}px`;
+  tempWrapper.appendChild(clone);
+  document.body.appendChild(tempWrapper);
 
   // Clean filename based on candidate name
   const candidateName = document.getElementById("res-name")?.innerText || "Resume";
@@ -2484,32 +2498,21 @@ function downloadPDF() {
       scale: 2, 
       useCORS: true, 
       logging: false,
-      letterRendering: true,
-      scrollX: 0,
-      scrollY: 0
+      letterRendering: true
     },
     jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
   };
 
-  // Wait for the browser layout to stabilize without transitions
+  // Wait 150ms to ensure the browser has parsed and rendered the clone off-screen
   setTimeout(() => {
-    html2pdf().set(opt).from(sheet).save().then(() => {
-      // Restore scales and transitions
-      wrapper.style.setProperty("--scale", originalScale);
-      container.style.width = originalWidth;
-      container.style.height = originalHeight;
-      sheet.classList.remove("no-transition");
-      container.classList.remove("no-transition");
-      scaleResume();
+    html2pdf().set(opt).from(clone).save().then(() => {
+      document.body.removeChild(tempWrapper);
       showToast("PDF downloaded successfully!");
     }).catch(err => {
       console.error("PDF generation failed:", err);
-      wrapper.style.setProperty("--scale", originalScale);
-      container.style.width = originalWidth;
-      container.style.height = originalHeight;
-      sheet.classList.remove("no-transition");
-      container.classList.remove("no-transition");
-      scaleResume();
+      if (tempWrapper.parentNode) {
+        document.body.removeChild(tempWrapper);
+      }
       showToast("Failed to download PDF. Try printing instead.", "error");
     });
   }, 150);
