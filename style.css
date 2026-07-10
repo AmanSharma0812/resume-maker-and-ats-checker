@@ -1001,18 +1001,6 @@ body {
   display: none;
 }
 
-.resume-sheet.ats-mode .res-project-link-icon {
-  display: none !important;
-}
-
-.resume-sheet.ats-mode .res-project-link-text {
-  display: inline !important;
-  color: #000 !important;
-  text-decoration: underline;
-  font-size: 9.5pt;
-  margin-left: 6px;
-}
-
 /* Skills section styling */
 .skills-grid {
   display: flex;
