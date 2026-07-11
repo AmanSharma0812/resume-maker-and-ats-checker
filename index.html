@@ -453,63 +453,57 @@
   <div id="toast-container" class="toast-container"></div>
 
   <!-- Custom Modal for adding preset -->
-  <div id="preset-modal" class="modal">
-    <div class="modal-content">
-      <h3>Save Custom Profile</h3>
-      <p>Save your current resume details as a new preset profile.</p>
-      <input type="text" id="custom-preset-name" placeholder="e.g. Full Stack Dev" maxlength="20">
-      <div class="modal-actions">
-        <button class="btn-secondary" id="btn-cancel-preset">Cancel</button>
-        <button class="btn-primary" id="btn-save-preset" style="width: auto; padding: 8px 16px;">Save Preset</button>
-      </div>
+  <dialog id="preset-modal" class="modal-dialog">
+    <h3>Save Custom Profile</h3>
+    <p>Save your current resume details as a new preset profile.</p>
+    <input type="text" id="custom-preset-name" placeholder="e.g. Full Stack Dev" maxlength="20">
+    <div class="modal-actions">
+      <button class="btn-secondary" id="btn-cancel-preset">Cancel</button>
+      <button class="btn-primary" id="btn-save-preset" style="width: auto; padding: 8px 16px;">Save Preset</button>
     </div>
-  </div>
+  </dialog>
 
   <!-- Custom Section Type Picker Modal -->
-  <div id="custom-section-modal" class="modal">
-    <div class="modal-content">
-      <h3><i class="fa-solid fa-plus" style="color:var(--accent-light);margin-right:8px;"></i>Add Custom Section</h3>
-      <p>Choose a section type to add to your resume.</p>
-      <div class="custom-section-type-grid">
-        <button class="custom-section-type-btn" data-type="certifications"><i class="fa-solid fa-certificate"></i> Certifications</button>
-        <button class="custom-section-type-btn" data-type="awards"><i class="fa-solid fa-trophy"></i> Awards</button>
-        <button class="custom-section-type-btn" data-type="volunteer"><i class="fa-solid fa-hand-holding-heart"></i> Volunteer</button>
-        <button class="custom-section-type-btn" data-type="publications"><i class="fa-solid fa-book-open"></i> Publications</button>
-        <button class="custom-section-type-btn" data-type="languages"><i class="fa-solid fa-language"></i> Languages</button>
-        <button class="custom-section-type-btn" data-type="interests"><i class="fa-solid fa-star"></i> Interests</button>
-        <button class="custom-section-type-btn" data-type="custom"><i class="fa-solid fa-pen"></i> Custom Title</button>
-      </div>
-      <div class="form-group mt-2" id="custom-section-title-wrap" style="display:none;">
-        <label>Custom Section Title</label>
-        <input type="text" id="custom-section-title-input" placeholder="e.g. Achievements, References...">
-      </div>
-      <div class="modal-actions">
-        <button class="btn-secondary" id="btn-cancel-custom-section">Cancel</button>
-        <button class="btn-primary" id="btn-confirm-custom-section" style="width:auto;padding:8px 16px;">Add Section</button>
-      </div>
+  <dialog id="custom-section-modal" class="modal-dialog">
+    <h3><i class="fa-solid fa-plus" style="color:var(--accent-light);margin-right:8px;"></i>Add Custom Section</h3>
+    <p>Choose a section type to add to your resume.</p>
+    <div class="custom-section-type-grid">
+      <button class="custom-section-type-btn" data-type="certifications"><i class="fa-solid fa-certificate"></i> Certifications</button>
+      <button class="custom-section-type-btn" data-type="awards"><i class="fa-solid fa-trophy"></i> Awards</button>
+      <button class="custom-section-type-btn" data-type="volunteer"><i class="fa-solid fa-hand-holding-heart"></i> Volunteer</button>
+      <button class="custom-section-type-btn" data-type="publications"><i class="fa-solid fa-book-open"></i> Publications</button>
+      <button class="custom-section-type-btn" data-type="languages"><i class="fa-solid fa-language"></i> Languages</button>
+      <button class="custom-section-type-btn" data-type="interests"><i class="fa-solid fa-star"></i> Interests</button>
+      <button class="custom-section-type-btn" data-type="custom"><i class="fa-solid fa-pen"></i> Custom Title</button>
     </div>
-  </div>
+    <div class="form-group mt-2" id="custom-section-title-wrap" style="display:none;">
+      <label>Custom Section Title</label>
+      <input type="text" id="custom-section-title-input" placeholder="e.g. Achievements, References...">
+    </div>
+    <div class="modal-actions">
+      <button class="btn-secondary" id="btn-cancel-custom-section">Cancel</button>
+      <button class="btn-primary" id="btn-confirm-custom-section" style="width:auto;padding:8px 16px;">Add Section</button>
+    </div>
+  </dialog>
 
   <!-- Custom Modal for Gemini API Settings -->
-  <div id="api-modal" class="modal">
-    <div class="modal-content" style="max-width: 420px;">
-      <h3><i class="fa-solid fa-key" style="color: var(--accent-light); margin-right: 8px;"></i> Gemini API Configuration</h3>
-      <p style="font-size: 12px; color: var(--text-secondary); margin-top: 8px; line-height: 1.5;">
-        Enter your Google Gemini API Key below. This key is used directly from your browser to communicate with Google Gemini AI. Your key is stored securely in your browser's local storage and is never sent to any third-party server.
-      </p>
-      <p style="font-size: 11px; color: var(--text-muted); margin-top: 6px;">
-        Don't have an API key? You can get a free key from the <a href="https://aistudio.google.com/" target="_blank" style="color: var(--accent-light); text-decoration: underline;">Google AI Studio</a>.
-      </p>
-      <div class="form-group" style="margin-top: 14px;">
-        <label style="font-size: 11px;">Gemini API Key</label>
-        <input type="password" id="gemini-api-key-input" class="custom-section-entry-input" placeholder="AIzaSy..." style="margin-top: 4px;">
-      </div>
-      <div class="modal-actions" style="margin-top: 18px; display: flex; justify-content: flex-end; gap: 10px;">
-        <button class="btn-secondary" id="btn-clear-api" style="padding: 8px 14px; margin-bottom: 0;">Clear Key</button>
-        <button class="btn-primary" id="btn-save-api" style="padding: 8px 16px; margin-bottom: 0; width: auto;">Save Key</button>
-      </div>
+  <dialog id="api-modal" class="modal-dialog" style="max-width: 420px;">
+    <h3><i class="fa-solid fa-key" style="color: var(--accent-light); margin-right: 8px;"></i> Gemini API Configuration</h3>
+    <p style="font-size: 12px; color: var(--text-secondary); margin-top: 8px; line-height: 1.5;">
+      Enter your Google Gemini API Key below. This key is used directly from your browser to communicate with Google Gemini AI. Your key is stored securely in your browser's local storage and is never sent to any third-party server.
+    </p>
+    <p style="font-size: 11px; color: var(--text-muted); margin-top: 6px;">
+      Don't have an API key? You can get a free key from the <a href="https://aistudio.google.com/" target="_blank" style="color: var(--accent-light); text-decoration: underline;">Google AI Studio</a>.
+    </p>
+    <div class="form-group" style="margin-top: 14px;">
+      <label style="font-size: 11px;">Gemini API Key</label>
+      <input type="password" id="gemini-api-key-input" class="custom-section-entry-input" placeholder="AIzaSy..." style="margin-top: 4px;">
     </div>
-  </div>
+    <div class="modal-actions" style="margin-top: 18px; display: flex; justify-content: flex-end; gap: 10px;">
+      <button class="btn-secondary" id="btn-clear-api" style="padding: 8px 14px; margin-bottom: 0;">Clear Key</button>
+      <button class="btn-primary" id="btn-save-api" style="padding: 8px 16px; margin-bottom: 0; width: auto;">Save Key</button>
+    </div>
+  </dialog>
 
   <!-- Mobile Navigation Bar -->
   <div class="mobile-nav-bar">

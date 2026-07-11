@@ -72,7 +72,7 @@ const PRESETS = {
     ],
     skills: {
       languages: "JavaScript (ES6+), Python, HTML5, CSS3, SQL (PostgreSQL, MySQL)",
-      tools: "React.js, Redux, Context API, Git, GitHub, VS Code, Figma, Bootstrap, Node.js"
+      tools: "React.js, Redux, Context API, Git, GitHub, VS Code, Figma, Bootstrap, Node.js, Ponytail"
     }
   },
   graphicDesigner: {
@@ -233,7 +233,7 @@ const PRESETS = {
     ],
     skills: {
       languages: "JavaScript (ES6+), Python, HTML5, CSS3, SQL (PostgreSQL, MySQL)",
-      tools: "React.js, Figma, Adobe Photoshop, Premiere Pro, DaVinci Resolve, Git, GitHub, VS Code, Canva, OBS"
+      tools: "React.js, Figma, Adobe Photoshop, Premiere Pro, DaVinci Resolve, Git, GitHub, VS Code, Canva, OBS, Ponytail"
     }
   },
   salesMarketing: {
@@ -494,6 +494,7 @@ document.addEventListener("DOMContentLoaded", () => {
   setupTemplatePicker();
   setupCustomSectionModal();
   setupATSPanel();
+  setupDialogBackdropClicks();
   updatePreview();
   
   if (document.fonts) {
@@ -544,17 +545,6 @@ function setupPresetListeners() {
     modalInput.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
         saveCustomPreset();
-      } else if (e.key === "Escape") {
-        closeAddPresetModal();
-      }
-    });
-  }
-
-  const modal = document.getElementById("preset-modal");
-  if (modal) {
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) {
-        closeAddPresetModal();
       }
     });
   }
@@ -735,7 +725,7 @@ function openAddPresetModal() {
   const input = document.getElementById("custom-preset-name");
   if (modal && input) {
     input.value = "";
-    modal.classList.add("show");
+    modal.showModal();
     input.focus();
   }
 }
@@ -743,7 +733,7 @@ function openAddPresetModal() {
 function closeAddPresetModal() {
   const modal = document.getElementById("preset-modal");
   if (modal) {
-    modal.classList.remove("show");
+    modal.close();
   }
 }
 
@@ -816,6 +806,12 @@ function deletePreset(id) {
 
 // Load data into Form Inputs
 function loadDataIntoEditor(data) {
+  if (!data) return;
+  if (!data.experience) data.experience = [];
+  if (!data.projects) data.projects = [];
+  if (!data.education) data.education = [];
+  if (!data.customSections) data.customSections = [];
+
   const sheet = document.getElementById("resume-sheet");
 
   // Load Template Style setting via new thumbnail picker
@@ -919,7 +915,14 @@ function renderExperienceList() {
   const container = document.getElementById("experience-list-container");
   container.innerHTML = "";
 
+  if (!currentData.experience) {
+    currentData.experience = [];
+  }
+
   currentData.experience.forEach((job, index) => {
+    if (!job.bullets) {
+      job.bullets = [];
+    }
     const card = document.createElement("div");
     card.className = "item-card";
     const isFirst = index === 0;
@@ -1089,6 +1092,10 @@ function renderProjectsList() {
   const container = document.getElementById("projects-list-container");
   container.innerHTML = "";
 
+  if (!currentData.projects) {
+    currentData.projects = [];
+  }
+
   currentData.projects.forEach((proj, index) => {
     const card = document.createElement("div");
     card.className = "item-card";
@@ -1190,7 +1197,14 @@ function renderEducationList() {
   const container = document.getElementById("education-list-container");
   container.innerHTML = "";
 
+  if (!currentData.education) {
+    currentData.education = [];
+  }
+
   currentData.education.forEach((edu, index) => {
+    if (!edu.bullets) {
+      edu.bullets = [];
+    }
     const card = document.createElement("div");
     card.className = "item-card";
     const isFirst = index === 0;
@@ -1382,37 +1396,43 @@ document.getElementById("btn-add-edu-root").addEventListener("click", () => {
 
 // Update the resume preview
 function updatePreview() {
+  if (!currentData) return;
+  if (!currentData.experience) currentData.experience = [];
+  if (!currentData.projects) currentData.projects = [];
+  if (!currentData.education) currentData.education = [];
+  if (!currentData.customSections) currentData.customSections = [];
+
   // Update header
   document.getElementById("res-name").textContent = currentData.name || "Aman Sharma";
   
   // Format contact line
   let contactHtml = "";
-  if (currentData.phone) {
-    contactHtml += `<span class="contact-item"><i class="fas fa-phone-alt"></i> ${currentData.phone}</span>`;
+  if (currentData.phone && currentData.phone.trim()) {
+    contactHtml += `<span class="contact-item"><i class="fas fa-phone-alt"></i> ${currentData.phone.trim()}</span>`;
   }
-  if (currentData.email) {
+  if (currentData.email && currentData.email.trim()) {
     if (contactHtml) contactHtml += ` <span class="divider">|</span> `;
-    contactHtml += `<span class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:${currentData.email}">${currentData.email}</a></span>`;
+    contactHtml += `<span class="contact-item"><i class="fas fa-envelope"></i> <a href="mailto:${currentData.email.trim()}">${currentData.email.trim()}</a></span>`;
   }
-  if (currentData.location) {
+  if (currentData.location && currentData.location.trim()) {
     if (contactHtml) contactHtml += ` <span class="divider">|</span> `;
-    contactHtml += `<span class="contact-item"><i class="fas fa-map-marker-alt"></i> ${currentData.location}</span>`;
+    contactHtml += `<span class="contact-item"><i class="fas fa-map-marker-alt"></i> ${currentData.location.trim()}</span>`;
   }
-  if (currentData.linkedin) {
+  if (currentData.linkedin && currentData.linkedin.trim()) {
     if (contactHtml) contactHtml += ` <span class="divider">|</span> `;
-    const cleanUrl = currentData.linkedin.replace(/^(https?:\/\/)?(www\.)?/, "");
+    const cleanUrl = currentData.linkedin.trim().replace(/^(https?:\/\/)?(www\.)?/, "");
     contactHtml += `<span class="contact-item"><i class="fab fa-linkedin"></i> <a href="https://${cleanUrl}" target="_blank">LinkedIn</a></span>`;
   }
-  if (currentData.github) {
+  if (currentData.github && currentData.github.trim()) {
     if (contactHtml) contactHtml += ` <span class="divider">|</span> `;
-    const cleanUrl = currentData.github.replace(/^(https?:\/\/)?(www\.)?/, "");
+    const cleanUrl = currentData.github.trim().replace(/^(https?:\/\/)?(www\.)?/, "");
     const label = cleanUrl.includes("behance") ? "Behance" : "GitHub";
     const icon = cleanUrl.includes("behance") ? "fab fa-behance" : "fab fa-github";
     contactHtml += `<span class="contact-item"><i class="${icon}"></i> <a href="https://${cleanUrl}" target="_blank">${label}</a></span>`;
   }
-  if (currentData.portfolio) {
+  if (currentData.portfolio && currentData.portfolio.trim()) {
     if (contactHtml) contactHtml += ` <span class="divider">|</span> `;
-    const cleanUrl = currentData.portfolio.replace(/^(https?:\/\/)?(www\.)?/, "");
+    const cleanUrl = currentData.portfolio.trim().replace(/^(https?:\/\/)?(www\.)?/, "");
     contactHtml += `<span class="contact-item"><i class="fas fa-globe"></i> <a href="https://${cleanUrl}" target="_blank">Portfolio</a></span>`;
   }
   
@@ -1507,14 +1527,16 @@ function updatePreview() {
 
   // Render Skills Section
   const skillsSection = document.getElementById("res-section-skills");
-  if (currentData.skills && (currentData.skills.languages || currentData.skills.tools)) {
+  const hasLanguages = currentData.skills?.languages && currentData.skills.languages.trim();
+  const hasTools = currentData.skills?.tools && currentData.skills.tools.trim();
+  if (currentData.skills && (hasLanguages || hasTools)) {
     skillsSection.style.display = "block";
     let html = `<h3>SKILLS</h3><div class="section-divider"></div><div class="section-content"><div class="skills-grid">`;
-    if (currentData.skills.languages) {
-      html += `<div class="skills-row"><strong>Languages :</strong> ${currentData.skills.languages}</div>`;
+    if (hasLanguages) {
+      html += `<div class="skills-row"><strong>Languages :</strong> ${formatMarkdown(currentData.skills.languages.trim())}</div>`;
     }
-    if (currentData.skills.tools) {
-      html += `<div class="skills-row"><strong>Tools :</strong> ${currentData.skills.tools}</div>`;
+    if (hasTools) {
+      html += `<div class="skills-row"><strong>Tools :</strong> ${formatMarkdown(currentData.skills.tools.trim())}</div>`;
     }
     html += `</div></div>`;
     skillsSection.innerHTML = html;
@@ -1534,7 +1556,7 @@ function updatePreview() {
       let secHtml = `<h3>${titleUpper}</h3><div class="section-divider"></div><div class="section-content">`;
       if (sec.type === "interests" || sec.type === "languages") {
         // Render as a single line
-        const items = (sec.items || []).map(i => i.text).filter(Boolean).join(" • ");
+        const items = (sec.items || []).map(i => formatMarkdown(i.text?.trim())).filter(Boolean).join(" • ");
         secHtml += `<div class="skills-row">${items}</div>`;
       } else {
         // Render as bullet list entries
@@ -1559,9 +1581,10 @@ function updatePreview() {
 
 // Simple markdown formatter for bold syntax e.g. **text**
 function formatMarkdown(text) {
-  if (!text) return "";
+  if (text === null || text === undefined) return "";
+  const str = String(text);
   // Escape HTML
-  let escaped = text
+  let escaped = str
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;");
@@ -1652,18 +1675,20 @@ window.addEventListener("resize", scaleResume);
 
 // Exclusive accordion behavior fallback for browsers that do not support details[name]
 function setupAccordionListeners() {
-  const detailsElements = document.querySelectorAll(".editor-accordion .accordion-item");
-  detailsElements.forEach(item => {
-    item.addEventListener("toggle", (e) => {
-      if (item.open) {
-        detailsElements.forEach(otherItem => {
-          if (otherItem !== item && otherItem.open) {
-            otherItem.open = false;
-          }
-        });
-      }
-    });
-  });
+  const container = document.querySelector(".editor-accordion");
+  if (!container) return;
+
+  container.addEventListener("toggle", (e) => {
+    const item = e.target;
+    if (item.classList.contains("accordion-item") && item.open) {
+      const detailsElements = container.querySelectorAll(".accordion-item");
+      detailsElements.forEach(otherItem => {
+        if (otherItem !== item && otherItem.open) {
+          otherItem.open = false;
+        }
+      });
+    }
+  }, true); // Use capture phase because toggle event does not bubble
 }
 
 // Chatbot functionality
@@ -1718,7 +1743,7 @@ function setupChatbot() {
       e.stopPropagation();
       const savedKey = localStorage.getItem("gemini_api_key") || "";
       keyInput.value = savedKey;
-      apiModal.classList.add("show");
+      apiModal.showModal();
     });
 
     btnSaveApi.addEventListener("click", () => {
@@ -1730,19 +1755,19 @@ function setupChatbot() {
         localStorage.removeItem("gemini_api_key");
         showToast("Please enter a valid key.");
       }
-      apiModal.classList.remove("show");
+      apiModal.close();
     });
 
     btnClearApi.addEventListener("click", () => {
       localStorage.removeItem("gemini_api_key");
       keyInput.value = "";
       showToast("Gemini API key cleared.");
-      apiModal.classList.remove("show");
+      apiModal.close();
     });
 
-    apiModal.addEventListener("click", (e) => {
-      if (e.target === apiModal) {
-        apiModal.classList.remove("show");
+    keyInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        btnSaveApi.click();
       }
     });
   }
@@ -2270,6 +2295,7 @@ function setupTemplatePicker() {
       if (spacingLabel) spacingLabel.textContent = val.toFixed(1);
       const sheet = document.getElementById("resume-sheet");
       if (sheet) sheet.style.lineHeight = val;
+      updatePreview();
     });
   }
 
@@ -2527,7 +2553,7 @@ function setupCustomSectionModal() {
       if (titleWrap) titleWrap.style.display = "none";
       const titleInput = document.getElementById("custom-section-title-input");
       if (titleInput) titleInput.value = "";
-      if (modal) modal.classList.add("show");
+      if (modal) modal.showModal();
     });
   }
 
@@ -2544,13 +2570,7 @@ function setupCustomSectionModal() {
 
   if (btnCancel) {
     btnCancel.addEventListener("click", () => {
-      if (modal) modal.classList.remove("show");
-    });
-  }
-
-  if (modal) {
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) modal.classList.remove("show");
+      if (modal) modal.close();
     });
   }
 
@@ -2567,7 +2587,16 @@ function setupCustomSectionModal() {
         if (!title) { showToast("Please enter a title!"); return; }
       }
       addCustomSection(selectedCustomSectionType, title);
-      if (modal) modal.classList.remove("show");
+      if (modal) modal.close();
+    });
+  }
+
+  const titleInput = document.getElementById("custom-section-title-input");
+  if (titleInput) {
+    titleInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        if (btnConfirm) btnConfirm.click();
+      }
     });
   }
 }
@@ -2826,4 +2855,18 @@ Important rules:
     typingIndicator.remove();
     addChatMessage(`Failed to communicate with Gemini API. Error: ${err.message}. Please check your API key settings.`, "bot");
   }
+}
+
+// Global backdrop click handler for native HTML5 dialogs
+function setupDialogBackdropClicks() {
+  document.querySelectorAll("dialog").forEach(dialog => {
+    dialog.addEventListener("click", (e) => {
+      const rect = dialog.getBoundingClientRect();
+      const isInDialog = (rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
+        rect.left <= e.clientX && e.clientX <= rect.left + rect.width);
+      if (!isInDialog) {
+        dialog.close();
+      }
+    });
+  });
 }
