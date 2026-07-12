@@ -373,10 +373,10 @@ body {
   transition: all 0.2s;
 }
 
-/* Editor Scrollable Container */
 .editor-content-scroll {
   flex: 1;
   overflow-y: auto;
+  overflow-x: auto;
   display: flex;
   flex-direction: column;
 }
@@ -384,6 +384,7 @@ body {
 /* Custom Scrollbar for Editor */
 .editor-content-scroll::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
 }
 .editor-content-scroll::-webkit-scrollbar-track {
   background: transparent;
@@ -464,6 +465,24 @@ body {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+/* Custom Scrollbar for Accordion Content */
+.accordion-content::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.accordion-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+.accordion-content::-webkit-scrollbar-thumb {
+  background: var(--panel-border);
+  border-radius: 3px;
+}
+.accordion-content::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
 }
 
 /* Form Controls */
@@ -772,6 +791,7 @@ body {
 .resume-wrapper {
   flex: 1;
   overflow-y: auto;
+  overflow-x: auto;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -781,6 +801,7 @@ body {
 /* Custom Scrollbar for Preview */
 .resume-wrapper::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 .resume-wrapper::-webkit-scrollbar-track {
   background: transparent;
