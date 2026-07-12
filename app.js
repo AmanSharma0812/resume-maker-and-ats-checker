@@ -1056,14 +1056,29 @@ function renderExperienceList() {
   });
 
   container.querySelectorAll(".btn-ai-bullets").forEach(btn => {
-    btn.addEventListener("click", () => {
+    btn.addEventListener("click", async () => {
       const idx = parseInt(btn.dataset.index);
       const job = currentData.experience[idx];
-      const newBullets = generateAIBullets(job.role, job.company);
+
+      const originalText = btn.innerHTML;
+      btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Generating...`;
+      btn.disabled = true;
+
+      const newBullets = await generateAIBulletsWithLLM(job.role, job.company);
       currentData.experience[idx].bullets = newBullets;
+
+      btn.innerHTML = originalText;
+      btn.disabled = false;
+
       renderExperienceList();
       updatePreview();
-      showToast(`AI generated bullets for ${job.company || "Job"}!`);
+
+      const hasKey = !!localStorage.getItem("gemini_api_key");
+      if (hasKey) {
+        showToast(`Gemini generated bullets for ${job.company || "Job"}!`);
+      } else {
+        showToast(`Generated template bullets (set API Key for Gemini LLM!)`);
+      }
     });
   });
 
@@ -2076,8 +2091,8 @@ Here are some examples of what you can ask me:
 - 📄 *Print/Save*: "Print my resume".`;
 }
 
-// AI Bullet points generator templates
-function generateAIBullets(role, company) {
+// Static AI Bullet points generator fallback templates
+function generateStaticAIBullets(role, company) {
   const comp = company || "the company";
   const rLower = (role || "").toLowerCase();
 
@@ -2159,6 +2174,47 @@ function generateAIBullets(role, company) {
     `Refactored legacy software segments to simplify dependencies, eliminate redundancies, and boost modular support.`,
     `Collaborated within agile teams to brainstorm layouts, resolve bugs, and deliver scalable enterprise systems.`
   ];
+}
+
+// Asynchronous Gemini LLM-powered bullet generator with static template fallback
+async function generateAIBulletsWithLLM(role, company) {
+  const apiKey = localStorage.getItem("gemini_api_key");
+  if (!apiKey) {
+    return generateStaticAIBullets(role, company);
+  }
+
+  try {
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+    const promptText = `Generate exactly 3 professional, high-impact resume achievement bullet points for a candidate working as a "${role || "Team Member"}" at "${company || "Company"}". Use strong active verbs and professional styling. Keep them short. Output each bullet point on a new line without any prefix like "-", "*", "•", or numbers. Output ONLY the bullet points, no introductory or closing text.`;
+    
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: promptText }] }]
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`API error ${response.status}`);
+    }
+
+    const resJson = await response.json();
+    const text = resJson.candidates?.[0]?.content?.parts?.[0]?.text || "";
+    
+    const bullets = text
+      .split(/\n+/)
+      .map(line => line.replace(/^[\s\-*•\d\.]+\s*/, "").trim())
+      .filter(Boolean);
+
+    if (bullets.length > 0) {
+      return bullets.slice(0, 3);
+    }
+    return generateStaticAIBullets(role, company);
+  } catch (err) {
+    console.error("Failed to generate AI bullets using Gemini API:", err);
+    return generateStaticAIBullets(role, company);
+  }
 }
 
 // Backup Export to JSON file
