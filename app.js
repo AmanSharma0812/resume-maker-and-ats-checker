@@ -7,72 +7,65 @@ const PRESETS = {
     fontStyle: "inter",
     lineSpacing: 1.3,
     atsMode: false,
-    name: "Aman Sharma",
-    title: "React Developer",
-    phone: "8962603584",
-    email: "amannsharma08@gmail.com",
-    location: "Gwalior, Madhya Pradesh",
-    linkedin: "linkedin.com/in/AmanSharma",
-    github: "github.com/AmanSharma",
-    portfolio: "amansharma.dev",
+    name: "Jane Doe",
+    title: "Senior React Developer",
+    phone: "555-0199",
+    email: "jane.doe@example.com",
+    location: "San Francisco, CA",
+    linkedin: "linkedin.com/in/janedoe",
+    github: "github.com/janedoe",
+    portfolio: "janedoe.dev",
     experience: [
       {
-        company: "Unacademy",
-        role: "Front End Developer Intern",
-        dates: "May 2023 – Aug. 2023",
-        location: "Gwalior, MP",
+        company: "CloudScale Systems",
+        role: "Senior Frontend Engineer",
+        dates: "Oct 2024 – Present",
+        location: "San Francisco, CA",
         bullets: [
-          "Designed and implemented responsive, user-friendly web interfaces using **HTML5, CSS3, and JavaScript** to enhance overall user experience.",
-          "Collaborated on building interactive modules that boosted student engagement by 15%.",
-          "Explored data visualization methods to send daily test results and progress reports to team members using frontend dashboards.",
-          "Optimized components for maximum performance across a vast array of web-capable devices and browsers."
+          "Developed responsive user interfaces using **React, TypeScript, and CSS modules**, boosting application performance by 25%.",
+          "Collaborated with UX design teams to create an accessible component library based on W3C standards.",
+          "Optimized build systems and webpack configurations to reduce initial bundle loading times by 40%."
         ]
       },
       {
-        company: "Crystal Tech Service Pvt. Ltd.",
-        role: "Full Stack Developer Intern (Remote)",
-        dates: "Jan. 2025 – May 2025",
+        company: "DevSolutions Agency",
+        role: "Frontend Developer",
+        dates: "Mar 2022 – Sep 2024",
         location: "Remote",
         bullets: [
-          "Focused mainly on **frontend development**, creating clean UI layouts for diverse web applications.",
-          "Created responsive website interfaces for US-based and local clients, ensuring mobile-first compatibility.",
-          "Developed a complete website for a regional spices company, implementing modern design tokens and CSS animations.",
-          "Assisted in basic backend integration and database connectivity using Node.js and SQL."
+          "Implemented state management features using **Redux Toolkit** and React Context API across multiple customer dashboards.",
+          "Integrated REST APIs and WebSockets to enable real-time collaborative editing features.",
+          "Wrote automated unit and integration tests using Jest and React Testing Library, raising test coverage to 90%."
         ]
       }
     ],
     projects: [
       {
-        name: "Spotify Clone",
-        link: "github.com/AmanSharma/spotify-clone",
-        description: "Built a fully functional Spotify interface clone using **React.js, Tailwind CSS**, and the Spotify API. Integrates play, pause, search, and playlist viewing features."
+        name: "Task Board App",
+        link: "github.com/janedoe/taskboard",
+        description: "Created a full-stack Kanban board with drag-and-drop support, real-time sync, and user access roles using React."
       },
       {
-        name: "Face Recognition System",
-        link: "github.com/AmanSharma/face-recognition",
-        description: "Developed a computer vision application utilizing **Python, OpenCV, and TensorFlow** to detect and recognize faces from a live webcam feed in real-time."
-      },
-      {
-        name: "Weather Dashboard",
-        link: "github.com/AmanSharma/weather-dashboard",
-        description: "Created an interactive weather application that integrates open-source APIs to fetch real-time weather details and present them with beautiful dynamic backgrounds based on the current weather condition."
+        name: "Telemetry Dashboard",
+        link: "github.com/janedoe/telemetry",
+        description: "Built a customizable metrics visualizer with Chart.js and raw SVG rendering to graph server analytics feeds."
       }
     ],
     education: [
       {
-        institution: "Madhav Institute of Technology & Science (MITS)",
-        degree: "Bachelor of Engineering in Information Technology",
-        dates: "Sep. 2021 – May 2025",
-        location: "Gwalior, MP",
+        institution: "Pacific Institute of Technology",
+        degree: "B.S. in Computer Science",
+        dates: "Sep 2018 – May 2022",
+        location: "Seattle, WA",
         bullets: [
-          "**Coursework:** Data Structures & Algorithms, Database Management Systems, Object Oriented Programming, Software Engineering.",
-          "**Activities:** Core Team Member of the Asimov Robotics Club, managing technical workshops and web development tasks."
+          "Specialized coursework in Software Engineering, Database Systems, and Distributed Computing.",
+          "Developed a peer-to-peer file sharing application as part of a senior capstone group design project."
         ]
       }
     ],
     skills: {
-      languages: "JavaScript (ES6+), Python, HTML5, CSS3, SQL (PostgreSQL, MySQL)",
-      tools: "React.js, Redux, Context API, Git, GitHub, VS Code, Figma, Bootstrap, Node.js, Ponytail"
+      languages: "JavaScript (ES6+), TypeScript, HTML5, CSS3, SQL (PostgreSQL)",
+      tools: "React, Redux, Node.js, Git, Vite, Webpack, Figma, Jest"
     }
   },
   graphicDesigner: {
@@ -81,67 +74,64 @@ const PRESETS = {
     fontStyle: "nunito",
     lineSpacing: 1.4,
     atsMode: false,
-    name: "Aman Sharma",
-    title: "Graphic & UI/UX Designer",
-    phone: "8962603584",
-    email: "amannsharma08@gmail.com",
-    location: "Gwalior, Madhya Pradesh",
-    linkedin: "linkedin.com/in/AmanSharma",
-    github: "behance.net/AmanSharma",
-    portfolio: "amansharma.design",
+    name: "Alex Morgan",
+    title: "Lead UI/UX Designer",
+    phone: "555-0142",
+    email: "alex.design@example.com",
+    location: "Brooklyn, NY",
+    linkedin: "linkedin.com/in/alexmorgan",
+    github: "behance.net/alexmorgan",
+    portfolio: "alexdesign.studio",
     experience: [
       {
-        company: "Freelance Design & Marketing",
-        role: "Web Designer & Graphic Designer",
-        dates: "2024 – Present",
-        location: "Remote",
+        company: "Vivid Creative Agency",
+        role: "Senior Graphic & UI Designer",
+        dates: "Jan 2023 – Present",
+        location: "New York, NY",
         bullets: [
-          "Designed **100+ social media creatives**, including high-engagement posts, carousels, and flyers for diverse brand campaigns.",
-          "Created visually stunning Instagram reels using motion graphics, typography, and trending video formats.",
-          "Developed marketing assets and layout banners for real estate developments like **Shri Vinayak City** and **Gatiman Dham**.",
-          "Delivered professional AI-generated video and imagery assets, streamlining the branding process for startup clients."
+          "Designed branding packages, logo concepts, and UI mockups for 20+ national consumer product campaigns.",
+          "Built high-fidelity interactive wireframes and prototypes in **Figma** to align project scope with developer limitations.",
+          "Created marketing illustrations and layouts for print and digital publishing platforms."
         ]
       },
       {
-        company: "Perfect Jugado SH",
-        role: "Video Editor & Designer",
-        dates: "Aug. 2023 – July 2024",
-        location: "Gwalior, MP",
+        company: "PixelPerfect Labs",
+        role: "Web Layout Designer",
+        dates: "Jun 2020 – Dec 2022",
+        location: "Remote",
         bullets: [
-          "Led video editing and graphic assets creation for a digital media startup, growing audience reach by 40%.",
-          "Designed clean UI layouts and visual mockups for client websites using **Figma and Adobe Photoshop**.",
-          "Mentored junior design interns on typography, composition principles, and video timeline editing techniques.",
-          "Maintained a standard digital asset library to ensure quick turnaround times for promotional campaigns."
+          "Developed web UI styles, layout assets, and SVG animation libraries for client product landing pages.",
+          "Spearheaded user research studies to uncover user onboarding friction points, improving conversion rates by 18%."
         ]
       }
     ],
     projects: [
       {
-        name: "Minimalist Icon Pack",
-        link: "gumroad.com/l/icon-pack",
-        description: "Designed and released 100+ minimalist iOS and Android icons from scratch using Procreate and Figma; marketed on YouTube and generated organic sales on Gumroad."
+        name: "Vector Icon Set",
+        link: "gumroad.com/l/vectorset",
+        description: "Designed and released 150+ custom flat-vector system icons used by developers globally for mobile app themes."
       },
       {
-        name: "Real Estate Identity Design",
-        link: "behance.net/AmanSharma/realestate",
-        description: "Created the complete branding package, logos, hoardings, and social media templates for high-profile regional housing societies, boosting their local visual presence."
+        name: "FinTech Brand Identity",
+        link: "behance.net/alexmorgan/fintech",
+        description: "Created comprehensive brand guidelines, color palettes, and typographic patterns for a emerging mobile savings startup."
       }
     ],
     education: [
       {
-        institution: "Madhav Institute of Technology & Science (MITS)",
-        degree: "B.Tech in Information Technology",
-        dates: "2021 – 2025",
-        location: "Gwalior, MP",
+        institution: "Brooklyn School of Design",
+        degree: "BFA in Communication Design",
+        dates: "Sep 2016 – May 2020",
+        location: "Brooklyn, NY",
         bullets: [
-          "Focused studies on Human-Computer Interaction, UI/UX Design principles, and Frontend engineering.",
-          "**Activities:** Vice President of the Photography and Filming Club, capturing events and directing short documentary projects."
+          "Concentration in Typography, Interaction Design, and Visual Branding methodologies.",
+          "Received the Annual Design Excellence award during the senior graduate presentation showcase."
         ]
       }
     ],
     skills: {
-      languages: "HTML5, CSS3, JavaScript (basic), Markdown",
-      tools: "Figma, Adobe Photoshop, Premiere Pro, Canva, DaVinci Resolve, OBS Studio, Creative Cloud, Git"
+      languages: "HTML5, CSS3, SVG Styling, Markdown",
+      tools: "Figma, Adobe Creative Suite (Illustrator, Photoshop, InDesign), Sketch, Procreate, Git"
     }
   },
   combined: {
@@ -150,90 +140,64 @@ const PRESETS = {
     fontStyle: "roboto",
     lineSpacing: 1.2,
     atsMode: false,
-    name: "Aman Sharma",
-    title: "Creative Developer & Designer",
-    phone: "8962603584",
-    email: "amannsharma08@gmail.com",
-    location: "Gwalior, Madhya Pradesh",
-    linkedin: "linkedin.com/in/AmanSharma",
-    github: "github.com/AmanSharma",
-    portfolio: "amansharma.dev",
+    name: "Taylor Reed",
+    title: "Full Stack Engineer & Designer",
+    phone: "555-0188",
+    email: "taylor.reed@example.com",
+    location: "Austin, TX",
+    linkedin: "linkedin.com/in/taylorreed",
+    github: "github.com/taylorreed",
+    portfolio: "taylorreed.co",
     experience: [
       {
-        company: "Crystal Tech Service Pvt. Ltd.",
-        role: "Full Stack Developer Intern (Remote)",
-        dates: "Jan. 2025 – May 2025",
+        company: "NextGen Software Corp",
+        role: "Full Stack Engineer",
+        dates: "Feb 2024 – Present",
+        location: "Austin, TX",
+        bullets: [
+          "Architected backend web channels and REST APIs using **Node.js, Express, and PostgreSQL** to serve complex telemetry statistics.",
+          "Designed responsive administrative dashboard screens in React and custom CSS custom properties.",
+          "Collaborated closely with marketing teams to translate prototype design ideas into production-ready frontend components."
+        ]
+      },
+      {
+        company: "DigitalCraft Studio",
+        role: "Junior Web Developer & Designer",
+        dates: "May 2021 – Jan 2024",
         location: "Remote",
         bullets: [
-          "Focused mainly on **frontend development**, creating clean, accessible UI layouts for diverse client web platforms.",
-          "Rebuilt user dashboards using HTML/CSS/JS, improving performance and mobile responsiveness across devices.",
-          "Collaborated on designing UI prototypes in Figma and translating them into production-ready frontends."
-        ]
-      },
-      {
-        company: "Freelance Web & Graphic Design",
-        role: "Freelance Designer & Developer",
-        dates: "2024 – Present",
-        location: "Remote",
-        bullets: [
-          "Designed and developed visual identities, landing pages, and marketing collaterals for real estate and tech startup clients.",
-          "Created over 100+ custom social media creatives, high-engagement reels, and video packages.",
-          "Engineered interactive websites for local businesses using modern responsive web technologies."
-        ]
-      },
-      {
-        company: "Perfect Jugado SH",
-        role: "Video Editor & Web Assistant",
-        dates: "Aug. 2023 – July 2024",
-        location: "Gwalior, MP",
-        bullets: [
-          "Assisted in frontend web updates while creating professional video reels and marketing graphics.",
-          "Managed layout transitions, typography, and editing timeline workflows for client brand presentations.",
-          "Taught junior team members basic video editing principles and Figma collaborative design strategies."
-        ]
-      },
-      {
-        company: "Unacademy",
-        role: "Front End Developer Intern",
-        dates: "May 2023 – Aug. 2023",
-        location: "Gwalior, MP",
-        bullets: [
-          "Designed and implemented responsive web layouts using JavaScript and CSS, prioritizing client-side performance.",
-          "Created internal dashboard features to visualize student performance metrics and reports."
+          "Implemented frontend visual assets, layout grids, and navigation animations using standard web protocols.",
+          "Assisted in maintaining relational database setups, query scripting, and API routing setups.",
+          "Wrote automated unit test scripts to verify backend controller routes and user session workflows."
         ]
       }
     ],
     projects: [
       {
-        name: "Spotify Clone",
-        link: "github.com/AmanSharma/spotify-clone",
-        description: "Built a fully functional Spotify UI clone with **React.js and Tailwind CSS**, integrating real-time audio controls and playlist data."
+        name: "Music Hub UI",
+        link: "github.com/taylorreed/musichub",
+        description: "Created an interactive mockup of a audio playback platform using modern CSS grids and native audio controls."
       },
       {
-        name: "Minimalist Icon Pack",
-        link: "gumroad.com/l/icon-pack",
-        description: "Created and launched a bundle of 100+ vector-drawn mobile icons, marketing them via social media channels and distributing via Gumroad."
-      },
-      {
-        name: "Face Recognition App",
-        link: "github.com/AmanSharma/face-recognition",
-        description: "Programmed a python application using **OpenCV** to track and recognize faces with low-latency frames."
+        name: "Asset Library Pack",
+        link: "gumroad.com/l/assets",
+        description: "Created and launched a collection of 50+ SVG design tokens for developers looking to build rapid UI designs."
       }
     ],
     education: [
       {
-        institution: "Madhav Institute of Technology & Science (MITS)",
-        degree: "Bachelor of Engineering in Information Technology",
-        dates: "Sep. 2021 – May 2025",
-        location: "Gwalior, MP",
+        institution: "University of Texas",
+        degree: "B.S. in Computer Science",
+        dates: "Sep 2017 – May 2021",
+        location: "Austin, TX",
         bullets: [
-          "**Activities:** Core Member of Asimov Robotics Club & Vice President of the Photography and Filming Club."
+          "Completed coursework in Data Structures, Web Applications, Database Design, and Human-Computer Interaction."
         ]
       }
     ],
     skills: {
-      languages: "JavaScript (ES6+), Python, HTML5, CSS3, SQL (PostgreSQL, MySQL)",
-      tools: "React.js, Figma, Adobe Photoshop, Premiere Pro, DaVinci Resolve, Git, GitHub, VS Code, Canva, OBS, Ponytail"
+      languages: "JavaScript (ES6+), TypeScript, HTML5, CSS3, SQL (PostgreSQL, MySQL)",
+      tools: "React, Node.js, Express, Figma, Adobe Photoshop, Git, GitHub, VS Code"
     }
   },
   salesMarketing: {
@@ -242,63 +206,63 @@ const PRESETS = {
     fontStyle: "inter",
     lineSpacing: 1.3,
     atsMode: false,
-    name: "Aman Sharma",
-    title: "Sales & Marketing Specialist",
-    phone: "8962603584",
-    email: "amannsharma08@gmail.com",
-    location: "Gwalior, Madhya Pradesh",
-    linkedin: "linkedin.com/in/AmanSharma",
+    name: "Jordan Lee",
+    title: "Digital Marketing Specialist",
+    phone: "555-0177",
+    email: "jordan.lee@example.com",
+    location: "Chicago, IL",
+    linkedin: "linkedin.com/in/jordanlee",
     github: "",
-    portfolio: "amansharma.market",
+    portfolio: "jordanlee.marketing",
     experience: [
       {
-        company: "Alpha Growth Media",
-        role: "Digital Marketing Coordinator",
-        dates: "2024 – Present",
-        location: "Gwalior, MP",
+        company: "Horizon Growth Group",
+        role: "Marketing Campaign Coordinator",
+        dates: "Mar 2023 – Present",
+        location: "Chicago, IL",
         bullets: [
-          "Developed and executed multi-channel digital campaigns across Google Ads, Meta, and LinkedIn, boosting qualified sales lead acquisitions by 35% year-over-year.",
-          "Analyzed Google Analytics and CRM telemetry to optimize advertising spend, lowering customer acquisition cost (CAC) by 18%.",
-          "Authored high-converting SEO copy and blog content, driving organic web search traffic growth of 50%."
+          "Managed advertising spend across search and social channels, growing qualified sales leads by 30%.",
+          "Monitored customer lifecycle data via CRM channels to decrease customer acquisition costs (CAC) by 15%.",
+          "Authored search engine optimized articles and copywriting layouts for digital newsletters."
         ]
       },
       {
-        company: "NextGen SaaS Solutions",
-        role: "Sales Development Representative",
-        dates: "2023 – 2024",
+        company: "Apex Sales Solutions",
+        role: "Sales Development Associate",
+        dates: "Sep 2021 – Feb 2023",
         location: "Remote",
         bullets: [
-          "Exceeded monthly sales prospecting quotas by an average of 120%, generating over $150K in verified sales pipeline.",
-          "Conducted product discovery calls and tailored software demonstrations for enterprise B2B prospects."
+          "Exceeded inbound target quotas by 115% through optimized qualifying criteria and follow-up templates.",
+          "Conducted discover calls and customized software demonstrations for prospective enterprise business accounts."
         ]
       }
     ],
     projects: [
       {
-        name: "E-Commerce Launch Campaign",
-        link: "case-studies/ecomm-launch",
-        description: "Planned and executed the go-to-market branding strategy for a national health-food e-store, generating $50K in sales within 90 days."
+        name: "E-Commerce Strategy Plan",
+        link: "case-studies/strategy",
+        description: "Coordinated digital rollout plan for an online retail client, driving organic traffic growth of 45% within three months."
       },
       {
-        name: "Local Business SEO Overhaul",
+        name: "Local Business SEO Plan",
         link: "case-studies/local-seo",
-        description: "Optimized local search visibility and map pack rankings for a hospitality chain, increasing phone inquiries by 80%."
+        description: "Optimized geographic listings and citation reviews for regional stores to drive localized search click-throughs."
       }
     ],
     education: [
       {
-        institution: "State University of Business",
-        degree: "B.S. in Business Administration (Major in Marketing)",
-        dates: "2019 – 2023",
-        location: "Gwalior, MP",
+        institution: "Midwest State University",
+        degree: "B.S. in Business Administration (Marketing)",
+        dates: "Sep 2017 – Jun 2021",
+        location: "Chicago, IL",
         bullets: [
-          "Graduated with honors, focusing on Consumer Behavior, Market Research, and Brand Strategy."
+          "Graduated with honors, focus in consumer behavior patterns and market analytics models."
         ]
       }
     ],
     skills: {
-      languages: "Social Media Strategy, SEO Writing, B2B Sales Prospecting, Email Campaigns, Copywriting",
-      tools: "Google Analytics, HubSpot CRM, Salesforce, Mailchimp, Meta Ads Manager, Google Ads"
+      languages: "Campaign Analytics, SEO Content Strategy, B2B Prospecting, Email Copywriting",
+      tools: "Google Analytics, HubSpot CRM, Mailchimp, Meta Ads Manager, Google Ads, Salesforce"
     }
   },
   financeAccounting: {
@@ -307,63 +271,63 @@ const PRESETS = {
     fontStyle: "merriweather",
     lineSpacing: 1.3,
     atsMode: false,
-    name: "Aman Sharma",
-    title: "Financial Analyst & Accountant",
-    phone: "8962603584",
-    email: "amannsharma08@gmail.com",
-    location: "Gwalior, Madhya Pradesh",
-    linkedin: "linkedin.com/in/AmanSharma",
+    name: "Robert Chen",
+    title: "Senior Financial Analyst",
+    phone: "555-0155",
+    email: "robert.chen@example.com",
+    location: "Boston, MA",
+    linkedin: "linkedin.com/in/robertchen",
     github: "",
-    portfolio: "amansharma.finance",
+    portfolio: "robertchen.finance",
     experience: [
       {
-        company: "Vanguard Capital Partners",
-        role: "Senior Financial Analyst",
-        dates: "2024 – Present",
-        location: "Gwalior, MP",
+        company: "Summit Capital Partners",
+        role: "Lead Portfolio Analyst",
+        dates: "Nov 2023 – Present",
+        location: "Boston, MA",
         bullets: [
-          "Conducted comprehensive variance analysis and budget forecasting, presenting quarterly financial reviews to executive leadership.",
-          "Built complex discounted cash flow (DCF) models and valuation reports for potential middle-market acquisition deals.",
-          "Streamlined monthly financial close procedures, reducing report preparation time by 3 business days."
+          "Constructed valuation models, budget projection pipelines, and quarterly performance reviews for executive leadership review.",
+          "Evaluated operational budget variances, recommending cost reduction workflows that trimmed operational waste by 8%.",
+          "Automated ledger consolidation processes, reducing manual reconciliation reporting by 3 business days."
         ]
       },
       {
-        company: "Apex Business Solutions",
-        role: "Staff Accountant",
-        dates: "2022 – 2024",
-        location: "Gwalior, MP",
+        company: "Beacon Corporate Advisors",
+        role: "Financial Consultant",
+        dates: "Jul 2020 – Oct 2023",
+        location: "Boston, MA",
         bullets: [
-          "Managed general ledger entries, account reconciliations, and tax compliance audits for 25+ corporate clients.",
-          "Reviewed corporate expense accounts and processed payroll ledgers in compliance with local regulations."
+          "Conducted GAAP-compliant reviews, ledger reconciliations, and tax calculations for mid-size commercial client base.",
+          "Assisted corporate compliance audits by preparing detail worksheets and transaction trails."
         ]
       }
     ],
     projects: [
       {
-        name: "Enterprise ERP Implementation",
-        link: "projects/erp-migration",
-        description: "Led the accounting migration of ledger histories into SAP S/4HANA, coordinating with IT to ensure complete audit compliance."
+        name: "ERP Data Integration",
+        link: "projects/erp-integration",
+        description: "Assisted in the transfer of corporate accounts histories into dynamic data structures, ensuring absolute audit compliance."
       },
       {
-        name: "Cost Optimization Audit",
-        link: "projects/cost-audit",
-        description: "Conducted a thorough audit of operations expenses, identifying $45K in recurring software license redundancies."
+        name: "Operational Spending Review",
+        link: "projects/spending-review",
+        description: "Analyzed licensing metrics, identifying duplicate cloud asset subscriptions to yield $30,000 in immediate savings."
       }
     ],
     education: [
       {
-        institution: "City College of Commerce",
+        institution: "Boston School of Finance",
         degree: "M.S. in Accounting & Financial Management",
-        dates: "2020 – 2022",
-        location: "Gwalior, MP",
+        dates: "Sep 2018 – May 2020",
+        location: "Boston, MA",
         bullets: [
-          "Focus on Corporate Finance, GAAP Standards, Tax Regulations, and Advanced Auditing."
+          "Concentration in Financial Modeling, GAAP Standards, Tax Regulations, and Auditing Methods."
         ]
       }
     ],
     skills: {
-      languages: "Corporate Finance, GAAP Standards, Tax Filing, Financial Modeling, Auditing",
-      tools: "Excel (VBA, Pivot Tables), QuickBooks, SAP S/4HANA, Xero, Tableau, Salesforce"
+      languages: "Financial Valuation, GAAP Accounting Standards, Tax Filing Preparation, Cost Auditing",
+      tools: "Excel (VBA scripting, Pivot Tables), QuickBooks, SAP ERP, Xero, Tableau, Salesforce"
     }
   },
   healthcareNurse: {
@@ -372,63 +336,63 @@ const PRESETS = {
     fontStyle: "inter",
     lineSpacing: 1.3,
     atsMode: false,
-    name: "Aman Sharma",
+    name: "Sarah Miller",
     title: "Registered Nurse (RN)",
-    phone: "8962603584",
-    email: "amannsharma08@gmail.com",
-    location: "Gwalior, Madhya Pradesh",
-    linkedin: "linkedin.com/in/AmanSharma",
+    phone: "555-0166",
+    email: "sarah.miller@example.com",
+    location: "Denver, CO",
+    linkedin: "linkedin.com/in/sarahmiller",
     github: "",
     portfolio: "",
     experience: [
       {
-        company: "St. Jude Memorial Hospital",
-        role: "Staff Nurse - Intensive Care Unit (ICU)",
-        dates: "2023 – Present",
-        location: "Gwalior, MP",
+        company: "St. Jude Hospital",
+        role: "Staff Nurse - Intensive Care Unit",
+        dates: "Dec 2022 – Present",
+        location: "Denver, CO",
         bullets: [
-          "Provided high-acuity nursing care to critically ill patients, coordinating patient care plans with physicians and specialists.",
-          "Administered complex medication regimens, intravenous therapies, and monitored patient telemetry and ventilator metrics.",
-          "Educated patient families on post-discharge care protocols and health management strategies."
+          "Provided high-acuity nursing care to ICU patients, administering complex medication setups and monitoring critical telemetry feeds.",
+          "Collaborated within multi-discipline teams to coordinate critical care adjustments and update family members on progress.",
+          "Maintained absolute accuracy across all EHR charts and care summaries, complying with clinical standards."
         ]
       },
       {
-        company: "Gwalior Medical Center",
-        role: "Clinical Nurse - Emergency Department",
-        dates: "2021 – 2023",
-        location: "Gwalior, MP",
+        company: "Rocky Mountain Medical Center",
+        role: "Clinical Nurse - Emergency Dept",
+        dates: "Sep 2019 – Nov 2022",
+        location: "Denver, CO",
         bullets: [
-          "Triaged arriving emergency patients, executing rapid assessments and initiating emergency life support procedures.",
-          "Maintained flawless electronic health record (EHR) entries and care logs, adhering to clinical HIPAA standards."
+          "Triaged incoming trauma cases, executing rapid initial diagnostic reviews and initiating emergency stabilization steps.",
+          "Updated charts, logs, and patient records in compliance with standard clinical HIPAA frameworks."
         ]
       }
     ],
     projects: [
       {
-        name: "ICU Discharge Optimization Project",
+        name: "Discharge Workflow Project",
         link: "",
-        description: "Co-led a hospital taskforce to streamline patient transition protocols, reducing average discharge times by 20%."
+        description: "Assisted taskforce to optimize telemetry discharge steps, decreasing patient transfer transition delays by 25%."
       },
       {
-        name: "Community Wellness Campaign",
+        name: "Regional Health Outreach",
         link: "",
-        description: "Organized a regional public health outreach clinic, providing free blood pressure and glucose screenings to 300+ residents."
+        description: "Organized a monthly local wellness initiative, offering blood pressure checks and healthy living tips to 200+ local families."
       }
     ],
     education: [
       {
-        institution: "College of Nursing & Allied Health",
+        institution: "Denver College of Nursing",
         degree: "Bachelor of Science in Nursing (BSN)",
-        dates: "2017 – 2021",
-        location: "Gwalior, MP",
+        dates: "Sep 2015 – May 2019",
+        location: "Denver, CO",
         bullets: [
-          "Licensed Registered Nurse (RN) with clinical rotations in Intensive Care, Emergency Medicine, and Pediatrics."
+          "Licensed Registered Nurse (RN) with clinical experience in Trauma, ICU, and Pediatric Departments."
         ]
       }
     ],
     skills: {
-      languages: "Critical Care Nursing, Patient Triage, IV Therapy, EHR Documentation, Patient Advocacy",
-      tools: "Epic Systems EHR, Patient Telemetry, Ventilator Systems, ACLS/BLS Certification"
+      languages: "ICU Patient Care, Trauma Triage, EHR Charting, IV Therapy, Patient Advocacy",
+      tools: "Epic Systems EHR, Telemetry Monitors, Ventilator Systems, ACLS/BLS Certifications"
     }
   }
 };
@@ -489,7 +453,6 @@ document.addEventListener("DOMContentLoaded", () => {
   loadDataIntoEditor(currentData);
   setupFormListeners();
   setupMobileNavigation();
-  setupAccordionListeners();
   setupChatbot();
   setupTemplatePicker();
   setupCustomSectionModal();
@@ -1082,24 +1045,6 @@ function renderExperienceList() {
     });
   });
 
-  // Sortable JS drag and drop reordering
-  if (window.Sortable) {
-    Sortable.create(container, {
-      animation: 150,
-      handle: ".item-card-header",
-      onEnd: (evt) => {
-        const oldIndex = evt.oldIndex;
-        const newIndex = evt.newIndex;
-        if (oldIndex !== newIndex) {
-          const item = currentData.experience.splice(oldIndex, 1)[0];
-          currentData.experience.splice(newIndex, 0, item);
-          saveCurrentProgress();
-          renderExperienceList();
-          updatePreview();
-        }
-      }
-    });
-  }
 }
 
 // Render projects list
@@ -1187,24 +1132,6 @@ function renderProjectsList() {
     });
   });
 
-  // Sortable JS drag and drop reordering
-  if (window.Sortable) {
-    Sortable.create(container, {
-      animation: 150,
-      handle: ".item-card-header",
-      onEnd: (evt) => {
-        const oldIndex = evt.oldIndex;
-        const newIndex = evt.newIndex;
-        if (oldIndex !== newIndex) {
-          const item = currentData.projects.splice(oldIndex, 1)[0];
-          currentData.projects.splice(newIndex, 0, item);
-          saveCurrentProgress();
-          renderProjectsList();
-          updatePreview();
-        }
-      }
-    });
-  }
 }
 
 // Render education list
@@ -1352,24 +1279,6 @@ function renderEducationList() {
     });
   });
 
-  // Sortable JS drag and drop reordering
-  if (window.Sortable) {
-    Sortable.create(container, {
-      animation: 150,
-      handle: ".item-card-header",
-      onEnd: (evt) => {
-        const oldIndex = evt.oldIndex;
-        const newIndex = evt.newIndex;
-        if (oldIndex !== newIndex) {
-          const item = currentData.education.splice(oldIndex, 1)[0];
-          currentData.education.splice(newIndex, 0, item);
-          saveCurrentProgress();
-          renderEducationList();
-          updatePreview();
-        }
-      }
-    });
-  }
 }
 
 // Add top-level add buttons
@@ -1418,7 +1327,7 @@ function updatePreview() {
   if (!currentData.customSections) currentData.customSections = [];
 
   // Update header
-  document.getElementById("res-name").textContent = currentData.name || "Aman Sharma";
+  document.getElementById("res-name").textContent = currentData.name || "John Doe";
   
   // Format contact line
   let contactHtml = "";
@@ -1688,23 +1597,7 @@ function setupMobileNavigation() {
 // Resize listener
 window.addEventListener("resize", scaleResume);
 
-// Exclusive accordion behavior fallback for browsers that do not support details[name]
-function setupAccordionListeners() {
-  const container = document.querySelector(".editor-accordion");
-  if (!container) return;
 
-  container.addEventListener("toggle", (e) => {
-    const item = e.target;
-    if (item.classList.contains("accordion-item") && item.open) {
-      const detailsElements = container.querySelectorAll(".accordion-item");
-      detailsElements.forEach(otherItem => {
-        if (otherItem !== item && otherItem.open) {
-          otherItem.open = false;
-        }
-      });
-    }
-  }, true); // Use capture phase because toggle event does not bubble
-}
 
 // Chatbot functionality
 function setupChatbot() {
@@ -2775,73 +2668,10 @@ function renderCustomSectionsList() {
   });
 }
 
-// Generate and Download PDF using html2pdf.js
+// Generate and Download PDF using native print dialog
 function downloadPDF() {
-  const sheet = document.getElementById("resume-sheet");
-  if (!sheet) return;
-
-  showToast("Generating PDF, please wait...");
-
-  // Create a temporary container for rendering the cloned sheet off-screen
-  const tempWrapper = document.createElement("div");
-  tempWrapper.style.position = "fixed";
-  tempWrapper.style.left = "0";
-  tempWrapper.style.top = "0";
-  tempWrapper.style.zIndex = "-9999";
-  tempWrapper.style.width = "794px"; // A4 Width in pixels
-  tempWrapper.style.height = "auto";
-  tempWrapper.style.overflow = "hidden";
-  tempWrapper.style.background = "#ffffff";
-
-  // Clone the sheet
-  const clone = sheet.cloneNode(true);
-  clone.classList.add("no-transition");
-  
-  // Set explicit clean styles on the clone to guarantee correct sizing and visibility
-  clone.style.transform = "none";
-  clone.style.position = "relative";
-  clone.style.left = "0";
-  clone.style.top = "0";
-  clone.style.width = "210mm";
-  clone.style.minHeight = "297mm";
-  clone.style.boxShadow = "none";
-  clone.style.margin = "0";
-  clone.style.opacity = "1";
-  clone.style.display = "block";
-
-  tempWrapper.appendChild(clone);
-  document.body.appendChild(tempWrapper);
-
-  // Clean filename based on candidate name
-  const candidateName = document.getElementById("res-name")?.innerText || "Resume";
-  const filename = `${candidateName.trim().replace(/\s+/g, "_")}_Resume.pdf`;
-
-  const opt = {
-    margin:       0,
-    filename:     filename,
-    image:        { type: 'jpeg', quality: 0.98 },
-    html2canvas:  { 
-      scale: 2, 
-      useCORS: true, 
-      logging: false,
-      letterRendering: true
-    },
-    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-  };
-
-  // Wait 150ms to ensure the browser has parsed and rendered the clone off-screen
-  setTimeout(() => {
-    html2pdf().set(opt).from(clone).save().then(() => {
-      document.body.removeChild(tempWrapper);
-      showToast("PDF downloaded successfully!");
-    }).catch(err => {
-      console.error("PDF generation failed:", err);
-      if (tempWrapper.parentNode) {
-        document.body.removeChild(tempWrapper);
-      }
-      showToast("Failed to download PDF. Try printing instead.", "error");
-    });
-  }, 150);
+  showToast("Opening print dialog... Choose 'Save as PDF' to save your resume.");
+  window.print();
 }
 
 // Client-Side Google Gemini API Chatbot

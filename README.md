@@ -53,7 +53,7 @@ Since the application is built entirely on native web standards, it doesn't requ
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/AmanSharma0812/resume-maker-and-ats-checker.git
+   git clone https://github.com/username/resume-maker-and-ats-checker.git
    cd resume-maker-and-ats-checker
    ```
 2. Simply double-click `index.html` or open it with a local development server (like VS Code **Live Server** extension or Node `http-server`).
