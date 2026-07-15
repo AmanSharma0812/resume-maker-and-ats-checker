@@ -291,12 +291,15 @@
             <i class="fa-solid fa-file-pdf"></i> Download PDF
           </button>
         </div>
-        <div class="grid-2">
-          <button class="btn-secondary" id="btn-export" title="Export backup to JSON">
-            <i class="fa-solid fa-download"></i> Export Data
+        <div class="grid-3" style="gap: 10px;">
+          <button class="btn-secondary" id="btn-export" title="Export backup to JSON" style="margin-bottom: 0;">
+            <i class="fa-solid fa-download"></i> Export
           </button>
-          <button class="btn-secondary" id="btn-import" title="Import backup from JSON">
-            <i class="fa-solid fa-upload"></i> Import Data
+          <button class="btn-secondary" id="btn-import" title="Import backup from JSON" style="margin-bottom: 0;">
+            <i class="fa-solid fa-upload"></i> Import
+          </button>
+          <button class="btn-secondary" id="btn-reset-defaults" title="Reset all details to default" style="margin-bottom: 0; background: rgba(239, 68, 68, 0.1); border-color: rgba(239, 68, 68, 0.3); color: #f87171;">
+            <i class="fa-solid fa-rotate-left"></i> Reset
           </button>
         </div>
         <input type="file" id="import-file-input" style="display: none;" accept=".json">

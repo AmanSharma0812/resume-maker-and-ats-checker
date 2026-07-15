@@ -403,7 +403,18 @@ let activePresetId = "combined";
 try {
   const saved = localStorage.getItem("resume_custom_presets");
   if (saved) {
-    customPresets = JSON.parse(saved);
+    const parsedPresets = JSON.parse(saved);
+    let changed = false;
+    for (const key in parsedPresets) {
+      if (parsedPresets[key].name === "Aman Sharma" || (parsedPresets[key].email && parsedPresets[key].email.includes("amannsharma08"))) {
+        delete parsedPresets[key];
+        changed = true;
+      }
+    }
+    if (changed) {
+      localStorage.setItem("resume_custom_presets", JSON.stringify(parsedPresets));
+    }
+    customPresets = parsedPresets;
   }
 } catch (e) {
   console.error("Failed to load custom presets", e);
@@ -422,7 +433,16 @@ let currentData;
 try {
   const savedProgress = localStorage.getItem("resume_current_progress");
   if (savedProgress) {
-    currentData = JSON.parse(savedProgress);
+    const parsed = JSON.parse(savedProgress);
+    // If the saved data contains personal info of Aman Sharma, clear it so they can go live
+    if (parsed && (parsed.name === "Aman Sharma" || (parsed.email && parsed.email.includes("amannsharma08")))) {
+      localStorage.removeItem("resume_current_progress");
+      localStorage.removeItem("resume_active_preset_id");
+      localStorage.removeItem("resume_custom_presets");
+      currentData = null;
+    } else {
+      currentData = parsed;
+    }
   }
 } catch (e) {
   console.error("Failed to load current progress", e);
@@ -572,6 +592,19 @@ function setupPresetListeners() {
       fileInput.click();
     });
     fileInput.addEventListener("change", importResumeData);
+  }
+
+  // Reset all details to default
+  const btnReset = document.getElementById("btn-reset-defaults");
+  if (btnReset) {
+    btnReset.addEventListener("click", () => {
+      if (confirm("Are you sure you want to reset all resume data to defaults? This will erase any custom edits you have made.")) {
+        localStorage.removeItem("resume_current_progress");
+        localStorage.removeItem("resume_active_preset_id");
+        localStorage.removeItem("resume_custom_presets");
+        location.reload();
+      }
+    });
   }
 }
 
